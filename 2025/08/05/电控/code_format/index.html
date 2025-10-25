@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="zh-cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>电控组代码规范 | Cherno-Sagiri</title><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('/img/background_dark.png');
+ --light-background: url('/img/background_light.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>电控组代码规范</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-08-05T07:16:32.591Z" id="date"> 2025-08-05</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-10-25T15:17:18.031Z" id="updated"> 2025-10-25</time></div></span></div></div><hr><div id="post-content"><p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。<br><span id="more"></span></p>
+<h1 id="命名规则及代码风格"><a href="#命名规则及代码风格" class="headerlink" title="命名规则及代码风格"></a>命名规则及代码风格</h1><p><strong><em>统一遵循linux命名规则和代码风格</em></strong><br>与标准Linux内核代码有部分区别，如Linux原则上不使用typedef，Linux认为typedef会使可读写变差</p>
+<p>参考文献<br>Linux 内核代码风格<sup><a href="#fn_1" id="reffn_1">1</a></sup><br>Linux 环境下变量命名规则与最佳实践<sup><a href="#fn_2" id="reffn_2">2</a></sup><br>Linux下C语言编程风格和规范<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
+<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>变量</td>
+<td>小写下划线</td>
+<td>present_value</td>
+</tr>
+<tr>
+<td>枚举量</td>
+<td>全大写</td>
+<td>KEY_UP</td>
+</tr>
+<tr>
+<td>常量宏</td>
+<td>全大写</td>
+<td>PWM_MAX</td>
+</tr>
+<tr>
+<td>结构体类型</td>
+<td>小写下划线+后缀(_t)</td>
+<td>typedef struct { } motor_data_t</td>
+</tr>
+<tr>
+<td>枚举类型</td>
+<td>小写下划线+后缀(_e)</td>
+<td>typedef enum { } motor_mode_e</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在定义几个相关的常量时，最好用枚举。</p>
+<p><strong>说明</strong> ：</p>
+<ol>
+<li>命名规则</li>
+</ol>
+<ul>
+<li>变量名应当反映出变量的<strong>用途或内容</strong>，避免使用无意义的名称。</li>
+<li>禁止出现拼音。请使用简介明了的英文</li>
+<li>减少使用缩写命名，除非像“temp”（temporary）一样非常通用且容易理解</li>
+<li>好的代码是不解自明的：通过变量名即可明白该变量的作用。必要时添加注释辅助说明。</li>
+</ul>
+<ol>
+<li>同一模块的变量，使用结构体封装管理 如motor_data_t</li>
+<li>特定模块的变量，封装在函数内部，定义为函数内部变量，文件内部变量均标为static</li>
+<li>在项目或代码库中，应保持命名风格的一致性，以便于维护和理解。</li>
+</ol>
+<h2 id="函数规则"><a href="#函数规则" class="headerlink" title="函数规则"></a>函数规则</h2><ol>
+<li>函数以<strong>名词 + 动词</strong>命名,或是<strong>模块名 + 动词 + 名词</strong>，且以<strong>小写下划线</strong>的规则书写</li>
+</ol>
+<ul>
+<li>如‘motor_init’ ‘i2c_read_data’</li>
+</ul>
+<ol>
+<li>函数应该简短而漂亮，并且只做一件事情，而且把它做好。</li>
+<li>一个函数的最大长度是和该函数的复杂度和缩进级数成反比的。所以，如果你有一个理 论上很简单的只有一个很长 (但是简单) 的 case 语句的函数，而且你需要在每个 case 里做很多很小的事情，这样的函数尽管很长，但也是可以的。</li>
+<li>函数的另外一个衡量标准是本地变量的数量。此数量不应超过 5－10 个，否则你的函数就有问题了。</li>
+<li>文件内部调用的函数均标为static，外部调用的函数在头文件中声明</li>
+</ol>
+<h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><p>代码风格的意义就在于使用平常使用的工具来维持代码的可读性和可维护性。</p>
+<p>但介于每个人都有自己的代码风格，这个部分不会硬性要求统一，但还是推荐使用以下代码风格</p>
+<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>制表符是 8 个字符，所以缩进也是 8 个字符。<br><strong>理由</strong>：缩进的全部意义就在于清楚的定义一个控制块起止于何处。尤其是当你盯着你的 屏幕连续看了 20 小时之后，你将会发现大一点的缩进会使你更容易分辨缩进。</p>
+<h3 id="把长的行和字符串打散"><a href="#把长的行和字符串打散" class="headerlink" title="把长的行和字符串打散"></a>把长的行和字符串打散</h3><p>每一行的长度的限制是 80 列，我们强烈建议您遵守这个惯例。</p>
+<h3 id="括号“-”和“-”的使用原则"><a href="#括号“-”和“-”的使用原则" class="headerlink" title="括号“{”和“}”的使用原则"></a>括号“{”和“}”的使用原则</h3><p>1) 对于结构体、if/for/while/switch语句, “{”<strong>不另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">struct var_data &#123;<br>    int len;<br>    char data[0];<br>&#125;;<br> <br>if (a == b) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br> <br>for (i = 0; i &lt; 10; i++) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>2) if和else混用的情况下, else语句<strong>不另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">if (x == y)&#123;<br>    ...<br>&#125; else if (x &gt; y) &#123;<br>    ...<br>&#125; else &#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>3) 对于函数, “{”<strong>另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int add (int a, int b)<br>&#123;<br>    return a + b;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<h3 id="空格的使用"><a href="#空格的使用" class="headerlink" title="空格的使用"></a>空格的使用</h3><p>1) 关键字后加空格<br>在这些关键字后面加空格：</p>
+<blockquote>
+<p>if, switch, case, for, do, while</p>
+</blockquote>
+<p>但是这些不加：</p>
+<blockquote>
+<p>sizeof, typeof, alignof, <strong>attribute</strong><br>例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">for (i = 0; i &lt; 10; i++) <br>    a = c;<br>if （x &gt; y）<br><br>s=sizeof(int)<br></code></pre></td></tr></table></figure></p>
+</blockquote>
+<p>2) 括号内，紧挨着括号不加空格</p>
+<p>3) 对于指针，”*“号挨着名字而不是类型</p>
+<p>4) 操作符两侧加空格<br>以下二元或三元操作符两侧要加空格：</p>
+<blockquote>
+<p>= + - &lt; &gt; * / % | &amp; ^ &lt;= &gt;= == != ? :</p>
+</blockquote>
+<p>但是以下一元操作符，不加空格：</p>
+<blockquote>
+<p>&amp; * + - ~ ! sizeof typeof alignof <strong>attribute</strong> defined</p>
+</blockquote>
+<p>自增自减符号。不加空格：</p>
+<blockquote>
+<p>++ —</p>
+</blockquote>
+<p>结构体成员操作符，不加空格：</p>
+<blockquote>
+<p>‘.’ 和 “-&gt;”</p>
+</blockquote>
+<p><strong>不要在行尾加空格。</strong></p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>Linux风格的注释是c89 “/<em>…</em> /”风格。<br>长 (多行) 注释的首选风格是：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">/*<br> * This is the preferred style for multi-line<br> * comments in the Linux kernel source code.<br> * Please use it consistently.<br> *<br> * Description:  A column of asterisks on the left side,<br> * with beginning and ending almost-blank lines.<br> */<br></code></pre></td></tr></table></figure><br><strong>原则</strong>：</p>
+<ol>
+<li><p>注释是好的，不过有过度注释的危险。永远不要在注释里解释你的代码是如何运作的： 更好的做法是让别人一看你的代码就可以明白，解释写的很差的代码是浪费时间。</p>
+</li>
+<li><p>一般的，你想要你的注释告诉别人你的代码<strong>做了什么</strong>，而不是怎么做的。也请你不要把 注释放在一个函数体内部：如果函数复杂到你需要独立的注释其中的一部分，那么你的函数不符合<a href="#函数规则">函数规则</a></p>
+</li>
+<li><p>你应该做的，是把注释放在函数的头部，告诉人们它做了什么， 也可以加上它做这些事情的原因。</p>
+</li>
+</ol>
+<h2 id="需要统一的部分"><a href="#需要统一的部分" class="headerlink" title="需要统一的部分"></a>需要统一的部分</h2><h3 id="宏函数"><a href="#宏函数" class="headerlink" title="宏函数"></a>宏函数</h3><p>宏的名字请用大写字母，不过形如函数的宏的名字可以用小写字母。<br>一般的，如果能写成内联函数就不要写成像函数的宏。<br>含有多个语句的宏应该被包含在一个 do-while{0} 代码块里：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">#define macrofun(a, b, c)                       \<br>        do &#123;                                    \<br>                if (a == 5)                     \<br>                        do_this(b, c);          \<br>        &#125; while (0)<br></code></pre></td></tr></table></figure></p>
+<h3 id="内联（并不常用，没有把握就不用）"><a href="#内联（并不常用，没有把握就不用）" class="headerlink" title="内联（并不常用，没有把握就不用）"></a>内联（并不常用，没有把握就不用）</h3><p>有一个常见的误解是 内联 是 gcc 提供的可以让代码运行更快的一个选项。虽然使 用内联函数有时候是恰当的 (比如作为一种替代宏的方式，请看第十二章)，不过很多情 况下不是这样。inline 的过度使用会使内核变大，从而使整个系统运行速度变慢。</p>
+<p><strong>一个基本的原则：内联函数通常不超过三行</strong></p>
+<h3 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h3><p>只要可能，<strong>就不要在 .c 文件里面使用预处理条件</strong> (#if, #ifdef)；这样做让代码更难 阅读并且更难去跟踪逻辑。</p>
+<p>最好倾向于<strong>编译整个函数</strong>，而不是函数的一部分或表达式的一部分。与其放一个 ifdef 在表达式内，不如分解出部分或全部表达式，放进一个单独的辅助函数，并应用预处理 条件到这个辅助函数内。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><blockquote id="fn_1">
+<sup>1</sup>. <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/v4.15/translations/zh_CN/coding-style.html">Linux 内核代码风格</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. <a target="_blank" rel="noopener" href="https://my.oschina.net/emacs_8811540/blog/17320005">Linux 环境下变量命名规则与最佳实践</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599501566">Linux下C语言编程风格和规范</a><a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages" style="justify-content: flex-end"><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/08/03/my/">写一些给自己的话 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%8F%8A%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.</span> <span class="toc-text">命名规则及代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">命名规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">函数规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.3.</span> <span class="toc-text">代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">1.3.1.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E9%95%BF%E7%9A%84%E8%A1%8C%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%93%E6%95%A3"><span class="toc-number">1.3.2.</span> <span class="toc-text">把长的行和字符串打散</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E2%80%9C-%E2%80%9D%E5%92%8C%E2%80%9C-%E2%80%9D%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">1.3.3.</span> <span class="toc-text">括号“{”和“}”的使用原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">空格的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.3.5.</span> <span class="toc-text">注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E7%BB%9F%E4%B8%80%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-number">1.4.</span> <span class="toc-text">需要统一的部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.1.</span> <span class="toc-text">宏函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%EF%BC%88%E5%B9%B6%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%8A%8A%E6%8F%A1%E5%B0%B1%E4%B8%8D%E7%94%A8%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">内联（并不常用，没有把握就不用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85"><span class="toc-number">1.4.4.</span> <span class="toc-text">封装</span></a></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>

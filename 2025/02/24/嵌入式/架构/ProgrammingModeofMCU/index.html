@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="zh-cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>一篇关于单片机程序设计模式的思考 | Cherno-Sagiri</title><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('/img/background_dark.png');
+ --light-background: url('/img/background_light.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>一篇关于单片机程序设计模式的思考</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-02-23T16:00:00.000Z" id="date"> 2025-02-24</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-10-25T15:12:18.565Z" id="updated"> 2025-10-25</time></div></span></div></div><hr><div id="post-content"><p>基于初学freeRTOS，对单片机裸机的程序设计模式有了进一步的理解，在此分享给大家，希望能够帮到你<br><span id="more"></span></p>
+<h1 id="单片机程序设计模式"><a href="#单片机程序设计模式" class="headerlink" title="单片机程序设计模式"></a>单片机程序设计模式</h1><h2 id="裸机程序设计模式"><a href="#裸机程序设计模式" class="headerlink" title="裸机程序设计模式"></a>裸机程序设计模式</h2><p>以“做饭”和“接电话”为例</p>
+<hr>
+<h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">//轮询<br>void mian()<br>&#123;<br>    Init();     //初始化<br>    while(1)<br>    &#123;<br>      cook();   //做饭<br>      phone();  //接电话<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><ol>
+<li><p>在while循环里依次调用2个功能模块，这<strong>两个模块相互之间有影响</strong>：如果“煮饭”太花时间，就会导致迟迟无法“接电话”</p>
+</li>
+<li><p>使用轮询模式编写程序看起来很简单，但是要求 while 循环里调用到的<strong>模块要执行得非常快</strong>(避免相互影响)</p>
+</li>
+<li><p>由于不同模块往往执行速度不同，在复杂场景里反而增加了编程难度，因此轮询模式<strong>局限于模块较少且模块执行速度非常快的小项目</strong></p>
+</li>
+</ol>
+<hr>
+<h3 id="前后台—-按需分配"><a href="#前后台—-按需分配" class="headerlink" title="前后台—-按需分配"></a>前后台—-按需分配</h3><p>基于中断流程和主函数流程配合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">//前后台<br>void mian()<br>&#123;<br>    Init();     //初始化<br>    while(1)<br>    &#123;<br>      cook();   //做饭<br>      //后台,执行速度较慢且一直在执行<br>    &#125;<br>&#125;<br><br>void interrupt()<br>&#123;<br>    phone();  //接电话<br>    //前台,执行速度较快<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>while循环里的代码是后台程序，平时都是while循环在运行；</p>
+<h5 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h5><ol>
+<li><p>前后台模式是按照模块实现所需时间进行<strong>按需分配</strong></p>
+</li>
+<li><p>在该过程中，“接电话”响应非常迅速，在“做饭”过程中会暂停下来去“接电话”,而由于“接电话”执行速度较快，就无法影响(或影响很小)“做饭”</p>
+</li>
+<li><p>当模块增多，多个中断会增加暂停时间，就会导致 “做饭”迟迟无法执行，这在<strong>对时序有较高精准度</strong>的情况下(如传感器定时采集数据)不适用</p>
+</li>
+<li><p>场景复杂的情况下，函数之间的相互影响依旧存在，并且各函数间的时序不够精准，因此<strong>普通的前后台模式</strong>局限于中小型对时序没有太大要求的项目</p>
+</li>
+</ol>
+<hr>
+<h1 id="裸机开发的程序设计模式常用就这两种，但都有局限，需要改进"><a href="#裸机开发的程序设计模式常用就这两种，但都有局限，需要改进" class="headerlink" title="裸机开发的程序设计模式常用就这两种，但都有局限，需要改进"></a>裸机开发的程序设计模式常用就这两种，但都有局限，需要改进</h1><hr>
+<h2 id="前后台改进"><a href="#前后台改进" class="headerlink" title="前后台改进"></a>前后台改进</h2><h3 id="改进1：基于定时器驱动的前后台"><a href="#改进1：基于定时器驱动的前后台" class="headerlink" title="改进1：基于定时器驱动的前后台"></a>改进1：基于定时器驱动的前后台</h3><p>这里有两种改进方法，思路都是将不同的功能模块分配相应的时间片周期，代码实现时对应标志位</p>
+<h4 id="一-普通的定时器驱动"><a href="#一-普通的定时器驱动" class="headerlink" title="一.普通的定时器驱动"></a>一.普通的定时器驱动</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">// 前后台程序: 定时器驱动<br>void main()<br>&#123;<br>    while (1)<br>    &#123;<br>        // 后台程序<br>    &#125;<br>&#125;<br><br>// 前台程序: 固定时间触发一次中断<br>void timer_interrupt()<br>&#123;<br>    static int cnt = 0;<br>    cnt++;<br>    if (cnt % 5 == 0)<br>    &#123;<br>        cook();   //做饭用了5个中断时间<br>    &#125;<br>    else if (cnt % 2 == 0)<br>    &#123;<br>        phone();  //接电话用了2个中断时间<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这种模式适合调用周期性的函数，并且每一个函数执行的时间不能超过一个定时器周期。但遇到某个函数很耗时，这种场景下程序遭遇到了轮询模式的缺点：函数相互之间有影响。</p>
+<h4 id="二-执行规定时间的功能模块"><a href="#二-执行规定时间的功能模块" class="headerlink" title="二.执行规定时间的功能模块"></a>二.执行规定时间的功能模块</h4><p>先来看看HAL库的一个函数</p>
+<blockquote>
+<p>HAL_Delay();</p>
+</blockquote>
+<p><code>HAL_GetTick();为获取当前时间戳</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">__weak void HAL_Delay(uint32_t Delay)<br>&#123;<br>  uint32_t tickstart = HAL_GetTick();   //获取当前时间戳作为开始时间<br>  uint32_t wait = Delay;                //等待时间<br><br>  /* 添加 freq(频率) 以保证最短等待时间 */<br>  if (wait &lt; HAL_MAX_DELAY)<br>  &#123;<br>    wait += (uint32_t)(uwTickFreq);     //uwTickFreq为系统时钟频率(1kHz),所对应时间为1ms<br>  &#125;                                     //这也是为什么HAL_Delay函数中的参数单位为ms<br><br>  while ((HAL_GetTick() - tickstart) &lt; wait)<br>  &#123;<br>  &#125;                                     //延时<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>由上述函数启发，可编写执行规定时间的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void HAL_FuncDelay(void *(FuncBegin)(void), void *(FuncEnd)(void), uint32_t Delay)<br>&#123;<br>  uint32_t tickstart = HAL_GetTick();<br>  uint32_t wait = Delay;<br><br>  /* Add a freq to guarantee minimum wait */<br>  if (wait &lt; HAL_MAX_DELAY)<br>  &#123;<br>    wait += (uint32_t)(uwTickFreq);<br>  &#125;<br><br>  while ((HAL_GetTick() - tickstart) &lt; wait)<br>  &#123;<br>    FuncBegin();<br>  &#125;<br>  FuncEnd();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>虽然这样可以控制函数执行时间，但属于阻塞式编程，在对实时性有要求的场景还是不太合适，所以并不推荐这么写，但要会使用这个函数<code>HAL_GetTick()</code></p>
+<h3 id="改进2：基于状态机-state-或标志位-Flag-的前后台"><a href="#改进2：基于状态机-state-或标志位-Flag-的前后台" class="headerlink" title="改进2：基于状态机(state)或标志位(Flag)的前后台"></a>改进2：基于状态机(state)或标志位(Flag)的前后台</h3><p>主函数轮询，将功能函数根据完成状态拆分为多个状态<br>或立多个标志位标识状态</p>
+<p>标志位和状态机原理相似，以下仅以状态机为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">/* 做饭 */<br>void cook(int state)<br>&#123;<br>    state = 0；<br>    switch (state)<br>    &#123;<br>        case 0:<br>        &#123;<br>            /* 准备米和水 */<br>            /* 进入下一个状态 */<br>            state++;<br>            break;<br>        &#125;<br>        case 1:<br>        &#123;<br>            /* 淘米 */<br>            /* 进入下一个状态 */<br>            state++;<br>            break;<br>        &#125;<br>        case 2:<br>        &#123;<br>            /* 使用电饭煲 */<br>            /* 进入下一个状态 */<br>            state++;<br>            break;<br>        &#125;<br>        case 3:<br>        &#123;<br>            /* 等待米饭 */<br>            /* 恢复到初始状态 */<br>            state = 0;<br>            break;<br>        &#125;<br>    &#125;<br>&#125;<br><br>/*接电话*/<br>void phone(int state)<br>&#123;<br>    state = 0;<br>    switch (state)<br>    &#123;<br>        case 0:<br>        &#123;<br>            /* 拿起手机 */<br>            /* 进入下一个状态 */<br>            state++;<br>            break;<br>        &#125;<br>        case 1:<br>        &#123;<br>            /* 接听 */<br>            /* 进入下一个状态 */<br>            state++;<br>            break;<br>        &#125;<br>        case 2:<br>        &#123;<br>            /* 对话 */<br>            /* 恢复到初始状态 */<br>            state = 0;<br>            break;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样的好处是可以减少函数间的相互影响，但当程序内容复杂时，函数间的相互影响不可避免，且每个函数都要写多个状态，不利于我们封装和移植</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>面对上述情况的缺点，实际上最好的方法是加上实时操作系统(RTOS),<br>让函数交替进行</p>
+<p>但在裸机不加操作系统的情况下，可以用到以下模式</p>
+<h3 id="中断-标志位-状态机的前后台（推荐）"><a href="#中断-标志位-状态机的前后台（推荐）" class="headerlink" title="中断+标志位+状态机的前后台（推荐）"></a>中断+标志位+状态机的前后台（推荐）</h3><p>主函数可以这样写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void main()<br>&#123;<br>  while(1)<br>  &#123;<br>    if(flag_cook)<br>    &#123;<br>      cook();//再将每个功能函数拆分为多个状态，过程如上省略<br>      Flag_cook=0;<br>    &#125;<br><br>    if(flag_phone)<br>    phone();<br>    Flag_phone=0;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">/*定时器或事件中断，以定时器中断为例*/<br>void timer_interrupt(void)<br>&#123;<br>  static int cnt = 0;<br>    cnt++;<br>    if (cnt % 5 == 0) //该标志位对应的函数所用时间<br>    &#123;<br>        Flag_cook=1;<br>    &#125;<br>    else if (cnt % 2 == 0)<br>    &#123;<br>        Flag_phone=1;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这种模式适用于大多数场景，且综合了以上各模式的优点，缺点是有许多冗杂代码，可以用更高效的数据结构(结构体，结构体指针，结构体数组,函数指针等)优化</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>假设我们有N个功能函数(任务)要处理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void main()<br>&#123;<br>  init();<br>  while(1)<br>  &#123;<br>    TaskScheduler();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>在任务处理函数中优化数据结构,其中i可以代表某个任务<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void TaskHandle(void)<br>&#123;<br>  static uint8_t i;<br>  for(i=0; i&lt;TASK_NUM_MAX; i++)<br>  &#123;<br>    if(Task[i].Flag)<br>    &#123;<br>      Task[i].Flag=0;<br>      Task[i].pTaskFunc();<br>    &#125; <br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>定时器中断作为任务调度器<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">void TaskScheduler(void) &#123;<br>    for (int i = 0; i &lt;TASK_NUM_MAX ; i++) &#123;<br>        if (Task[i].Flag == 0 &amp;&amp; Task[i].timcnt &gt; 0) &#123;<br>            Task[i].timcnt--;  // 计时减1<br>            if (Task[i].timcnt == 0) &#123;<br>                Task[i].pTaskFunc();  // 执行任务函数<br>                Task[i].Flag = 1;         // 标记任务已完成<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>其实思路和第一种没多大区别，优化主要在于数据结构，删去了很多冗余代码，下面的才是重点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">#define TASK_NUM_MAX N<br><br>typedef struct &#123;<br>  uint_8 Flag;<br>  uint16_t timcnt;<br>  void (*pTaskFunc)(void);<br>&#125;TaskStruct;<br><br>static TaskStruct Task[]=&#123;<br>  &#123;0,2,cook&#125;;<br>  &#123;0,5,phone&#125;;<br>  &#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这种写法效仿RTOS，思路模式属于裸机的极限了，但还能优化<strong>数据结构</strong> ，比如使用链表再进一步优化，但都用到链表了，不如使用freeRTOS</p>
+<h4 id="想要更高的性能就要用到RTOS-实时操作系统"><a href="#想要更高的性能就要用到RTOS-实时操作系统" class="headerlink" title="想要更高的性能就要用到RTOS(实时操作系统)"></a>想要更高的性能就要用到RTOS(实时操作系统)</h4><p>常见的RTOS有freeRTOS，ThreadX，LiteOS等，我们常用的是freeRTOS</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/07/23/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32HAL/CubeMX%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">← 下一篇 CubeMX配置详解</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2024/12/05/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32HAL/stm32HALStudy/">stm32HAL库学习笔记合集 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">单片机程序设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%B8%E6%9C%BA%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">裸机程序设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AE%E8%AF%A2"><span class="toc-number">1.1.1.</span> <span class="toc-text">轮询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.1.1.0.1.</span> <span class="toc-text">分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E5%8F%B0%E2%80%94-%E6%8C%89%E9%9C%80%E5%88%86%E9%85%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">前后台—-按需分配</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%9E%90-1"><span class="toc-number">1.1.2.0.1.</span> <span class="toc-text">分析</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A3%B8%E6%9C%BA%E5%BC%80%E5%8F%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%B8%B8%E7%94%A8%E5%B0%B1%E8%BF%99%E4%B8%A4%E7%A7%8D%EF%BC%8C%E4%BD%86%E9%83%BD%E6%9C%89%E5%B1%80%E9%99%90%EF%BC%8C%E9%9C%80%E8%A6%81%E6%94%B9%E8%BF%9B"><span class="toc-number">2.</span> <span class="toc-text">裸机开发的程序设计模式常用就这两种，但都有局限，需要改进</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E5%8F%B0%E6%94%B9%E8%BF%9B"><span class="toc-number">2.1.</span> <span class="toc-text">前后台改进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B1%EF%BC%9A%E5%9F%BA%E4%BA%8E%E5%AE%9A%E6%97%B6%E5%99%A8%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%89%8D%E5%90%8E%E5%8F%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">改进1：基于定时器驱动的前后台</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80-%E6%99%AE%E9%80%9A%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8%E9%A9%B1%E5%8A%A8"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">一.普通的定时器驱动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C-%E6%89%A7%E8%A1%8C%E8%A7%84%E5%AE%9A%E6%97%B6%E9%97%B4%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">二.执行规定时间的功能模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B2%EF%BC%9A%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E6%9C%BA-state-%E6%88%96%E6%A0%87%E5%BF%97%E4%BD%8D-Flag-%E7%9A%84%E5%89%8D%E5%90%8E%E5%8F%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">改进2：基于状态机(state)或标志位(Flag)的前后台</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">2.2.</span> <span class="toc-text">进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD-%E6%A0%87%E5%BF%97%E4%BD%8D-%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E5%89%8D%E5%90%8E%E5%8F%B0%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">中断+标志位+状态机的前后台（推荐）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96"><span class="toc-number">2.2.2.</span> <span class="toc-text">优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%B3%E8%A6%81%E6%9B%B4%E9%AB%98%E7%9A%84%E6%80%A7%E8%83%BD%E5%B0%B1%E8%A6%81%E7%94%A8%E5%88%B0RTOS-%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">想要更高的性能就要用到RTOS(实时操作系统)</span></a></li></ol></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>
