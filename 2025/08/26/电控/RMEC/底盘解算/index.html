@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh-cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>底盘解算 | Cherno-Sagiri</title><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('/img/background_dark.png');
+ --light-background: url('/img/background_light.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>底盘解算</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-08-25T16:00:00.000Z" id="date"> 2025-08-26</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-02-27T08:41:14.068Z" id="updated"> 2026-02-27</time></div></span></div></div><hr><div id="post-content"><p>麦轮，全向轮，舵轮，运动学解算和动力学解算尽在掌控之中!</p>
+<span id="more"></span>
+
+<h1 id="一些规定"><a href="#一些规定" class="headerlink" title="一些规定"></a>一些规定</h1><ul>
+<li><p>我们采用前x左y上z的直角坐标系进行讨论，其原点即云台转轴在底盘平面上的投影</p>
+</li>
+<li><p>假设给底盘传入的平动速度为 $$\vec{v_c} &#x3D; (v_x, v_y, 0)$$，旋转速度为 $$\vec{\omega} &#x3D; (0, 0, ω)$$（以逆时针为正方向），云台转轴（原点）到任意轮组的投影点向量为$$\vec{r} &#x3D; (r_x, r_y)$$轮半径为s</p>
+</li>
+<li><p>轮子将以编号为0,1,2,3，沿x轴正半轴逆时针方向摆放(即人面向车正方向，右手为0号轮)</p>
+</li>
+</ul>
+<h2 id="运动学解算"><a href="#运动学解算" class="headerlink" title="运动学解算"></a>运动学解算</h2><ul>
+<li><p>运动学正解：知道各部件状态，求整体状态</p>
+</li>
+<li><p>运动学逆解：知道整体状态,求各部件状态</p>
+</li>
+</ul>
+<p>在我们的模型中是这样<br class='item-img' data-src='/./img/dpjs/%E5%BA%95%E7%9B%98%E8%A7%A3%E7%AE%97.png'><img src="/./img/dpjs/%E5%BA%95%E7%9B%98%E8%A7%A3%E7%AE%97.png" alt="img"></p>
+<h2 id="速度解算"><a href="#速度解算" class="headerlink" title="速度解算"></a>速度解算</h2><p>对底盘进行运动学逆解算<br>对于任一底盘模型(即不考虑是哪种底盘模型)<br>对于整个底盘，我们已知<br>$$<br>\vec{v_c} &#x3D;（v_x , v_y, 0）\<br>\vec{\omega} &#x3D; (0,0,\omega) \<br>\vec{r} \<br>s<br>$$<br>任一轮向电机投影点速度$$\vec{v_w}$$,来自<strong>底盘平动</strong>和<strong>底盘旋转</strong>两个部分</p>
+<p>对于刚体，整体平动的速度与各点运动速度保持一致<br>因此将底盘平动速度分解得轮向电机投影点速度</p>
+<p>$$<br>\vec{v_1}&#x3D;(v_x,v_y,0)<br>$$</p>
+<p>对于旋转，由右手螺旋定则,<br>将底盘旋转速度分解，由向量的叉乘法则得</p>
+<p>$$<br>\vec{v_2}&#x3D;\vec{\omega} \times \vec{r}&#x3D;（0,0,\omega）\times (r_x,r_y,0)&#x3D;(-\omega \cdot r_y,\omega \cdot r_x,0)<br>$$</p>
+<p>则</p>
+<p>$$<br>\vec{v_w}&#x3D;\vec{v_1}+\vec{v_2}&#x3D;(v_x,v_y,0)+(-\omega \cdot r_y,\omega \cdot r_x,0)&#x3D;(v_x-\omega \cdot r_y,v_y+\omega \cdot r_x,0)<br>$$</p>
+<p>这样，任一轮向电机的轮组投影点的目标速度就解算出来了，现在再将其解算到实际底盘模型的电机线速度,最终转换到电机控制量($\omega_w$,$\theta_w$)</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>对于有轮滚子的模型，将$\vec{v}<em>{w}$分解为沿<strong>轮滚子无滚动方向</strong>的速度$\vec{v}</em>{n}$和沿<strong>轮组线速度正方向</strong>的速度$\vec{v_m}$</p>
+<p>其中，$\vec{v_m}$是我们最终需要的</p>
+<p class='item-img' data-src='/'><img src="/" alt="轮滚子无滚动方向"></p>
+<h3 id="全向轮底盘"><a href="#全向轮底盘" class="headerlink" title="全向轮底盘"></a>全向轮底盘</h3><h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>对于全向轮底盘<br>由于轮子滚动方向固定,0 ~ 3号<strong>轮滚子无滚动方向</strong>的方向向量$\vec{n}&#x3D;(cos{\theta},sin{\theta})$ 的夹角$\theta$分别为$135\degree$,$-135\degree$,$-45\degree$,$45\degree$(相对于我们规定的前x左y上z坐标系)</p>
+<p><strong>轮组线速度正方向</strong>的方向向量为$\vec{m}$&#x3D;$\vec{n}&#x3D;(cos{\theta},sin{\theta})$</p>
+<p>0 ~ 3号轮组投影点相对x轴正方向夹角$\alpha$(方位角)分别为$45\degree$,$135\degree$,$-135\degree$,$-45\degree$(为了计算$r_x$,$r_y$,使用$45\degree$,$135\degree$,$225\degree$,$315\degree$也可以)</p>
+<p>$$<br>r_x &#x3D; r  \cdot  \cos\alpha \<br>r_y &#x3D; r  \cdot  \sin\alpha<br>$$</p>
+<p class='item-img' data-src='/./img/%E5%85%A8%E5%90%91%E8%BD%AE.png'><img src="/./img/%E5%85%A8%E5%90%91%E8%BD%AE.png" alt="qxl"></p>
+<p>滚子无滚动方向上的速度($\vec{v_n}$)将是电机的投影点速度($\vec{v_w}$)在电机方向向量($\vec{n}$)上的投影向量<br>由 $\vec{a}$ 在 $\vec{b}$ 上的投影向量计算法则,即$\frac{(\vec{a}\cdot\vec{b}) \cdot \vec{b}}{|\vec{b}|}$得</p>
+<p>$$<br>\vec{v_n}&#x3D;\frac{(\vec{v_w} \cdot \vec{n})  \cdot  \vec{n}}{|\vec{n}|}&#x3D;((v_x – \omega  \cdot  r_y)  \cdot  cos{\theta} + (v_y + \omega  \cdot  r_x)  \cdot  sin{\theta}) (cos{\theta}, sin{\theta})<br>$$</p>
+<p>由于轮组线速度正方向的方向向量$\vec{m}$与$\vec{n}$相等，不用再投影，则轮组线速度<br>$$<br>\vec{v_m}&#x3D;\vec{v_n}&#x3D;((v_x – \omega  \cdot  r_y)  \cdot  cos{\theta} + (v_y + \omega  \cdot  r_x)  \cdot  sin{\theta}) (cos{\theta}, sin{\theta})<br>$$</p>
+<p>转换到电机控制量，则</p>
+<p>$$<br>\omega_w&#x3D;\frac{|\vec{v_m}|}{s}&#x3D;\frac{(v_x – \omega  \cdot  r_y)  \cdot  cos{\theta} + (v_y + \omega  \cdot  r_x)  \cdot  sin{\theta}}{s} \ &#x3D;\frac{v_x \cdot cos{\theta} + v_y \cdot sin{\theta} +(r_x \cdot sin{\theta}-r_y \cdot cos{\theta}) \cdot \omega}{s}<br>$$</p>
+<p>其中<br>$$<br>r_x \cdot sin{\theta}-r_y \cdot cos{\theta} &#x3D; r  \cdot  \cos\alpha \cdot sin{\theta} - r  \cdot  \sin\alpha \cdot cos{\theta} \&#x3D;<br>r \cdot \sin(\theta-\alpha)<br>$$</p>
+<p>代入$\theta$和$\alpha$</p>
+<p>$$<br>\theta<br>\begin{cases}<br>    \theta_0 &#x3D; 135\degree \<br>    \theta_1 &#x3D; -135\degree \<br>    \theta_2 &#x3D; -45\degree \<br>    \theta_3 &#x3D; 45\degree \<br>\end{cases}<br>\alpha<br>\begin{cases}<br>    \alpha_0 &#x3D; 45\degree \<br>    \alpha_1 &#x3D; 135\degree \<br>    \alpha_2 &#x3D; -135\degree \<br>    \alpha_3 &#x3D; -45\degree \<br>\end{cases}<br>$$</p>
+<p>其结果都为 $$r \cdot \sin{90\degree} &#x3D; r$$</p>
+<p>则计算$\omega_w$简化为</p>
+<p>$$<br>\omega_w&#x3D;\frac{v_x \cdot cos{\theta} + v_y \cdot sin{\theta} +r \cdot \omega}{s}<br>$$</p>
+<p>可以发现最终$\omega_w$结果和$\alpha$无关</p>
+<h4 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h4><p>以0号轮为例<br>$$<br>\theta_0 &#x3D; 135\degree<br>$$</p>
+<p>$$<br>\omega_{m0}&#x3D;\frac{(-\frac{\sqrt{2}}{2} \cdot v_x +\frac{\sqrt{2}}{2} \cdot v_y+\omega \cdot r)}{s}<br>$$</p>
+<p>同理可得<br>$$<br>\omega_{m1}&#x3D;\frac{(-\frac{\sqrt{2}}{2} \cdot v_x -\frac{\sqrt{2}}{2} \cdot v_y+\omega \cdot r)}{s}<br>$$<br>$$<br>\omega_{m2}&#x3D;\frac{(\frac{\sqrt{2}}{2} \cdot v_x -\frac{\sqrt{2}}{2} \cdot v_y+\omega \cdot r)}{s}<br>$$<br>$$<br>\omega_{m3}&#x3D;\frac{(\frac{\sqrt{2}}{2} \cdot v_x +\frac{\sqrt{2}}{2} \cdot v_y+\omega \cdot r)}{s}<br>$$</p>
+<p>其中，r和s由我们物理测量得到，因此我们代码只要传入$v_x$,$v_x$,$\omega$就行</p>
+<h3 id="麦轮底盘"><a href="#麦轮底盘" class="headerlink" title="麦轮底盘"></a>麦轮底盘</h3><h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>对于麦轮底盘,<br>0 ~ 3号 <strong>轮滚子无滚动方向</strong>的方向向量$\vec{n}&#x3D;(cos{\theta},sin{\theta})$ 的夹角$\theta$分别为$135\degree$,$-135\degree$,$-45\degree$,$45\degree$，</p>
+<p>轮组<strong>实际速度线速度</strong>正方向的方向向量为$$\vec{m}&#x3D;(cos{\gamma},sin{\gamma})$$ 夹角$\gamma$分别为$180\degree$,$180\degree$,$0\degree$,$0\degree$，</p>
+<p>0 ~ 3号轮组投影点坐标分别为$(r_x, r_y)$、 $(-r_x, r_y)$、 $(-r_x, -r_y)$、$(r_x, -r_y)$</p>
+<p class='item-img' data-src='/./img/%E9%BA%A6%E8%BD%AE.png'><img src="/./img/%E9%BA%A6%E8%BD%AE.png" alt="qxl"></p>
+<p>滚子无滚动方向上的速度($\vec{v_n}$)将是电机的投影点速度($\vec{v_w}$)在电机方向向量($\vec{n}$)上的投影向量<br>由 $\vec{a}$ 在 $\vec{b}$ 上的投影向量计算法则得<br>$$<br>\vec{v_n}&#x3D;(\vec{v_w} \cdot \vec{n})  \cdot  \vec{n}&#x3D;((v_x – \omega  \cdot  r_y)  \cdot  cos{\theta} + (v_y + \omega  \cdot  r_x)  \cdot  sin{\theta}) (cos{\theta}, sin{\theta})<br>$$</p>
+<p>对于麦轮，轮组线速度需满足其在$\vec{n}$方向上的投影为$\vec{v_n}$且该线速度在$\vec{m}$方向上</p>
+<p>$$<br>\vec{v_n}&#x3D;\frac{((\vec{v_m}) \cdot \vec{n})  \cdot  \vec{n}}{|\vec{n}|}<br>$$</p>
+<p>则</p>
+<p>$$<br>\vec{v_m}&#x3D;\frac{|\vec{v_n}|}{\vec{m} \cdot \vec{n}} \cdot \vec{m}<br>$$</p>
+<p>其中，$\vec{m} \cdot \vec{n}&#x3D;cos&lt;\vec{m},\vec{n}&gt;&#x3D;cos(\gamma-\theta)$</p>
+<p>化简得<br>$$<br>\vec{v_m}&#x3D;\frac{(v_x – \omega  \cdot  ry)  \cdot  cos{\theta} + (v_y + \omega  \cdot  rx)  \cdot  sin{\theta}}{cos(\gamma-\theta)}  \cdot (cos\gamma,sin\gamma)<br>$$</p>
+<p>转换到电机控制量，则</p>
+<p>$$<br>\omega_w&#x3D;\frac{|\vec{v_m}|}{s}&#x3D;\frac{(v_x – \omega  \cdot  ry)  \cdot  cos{\theta} + (v_y + \omega  \cdot  rx)  \cdot  sin{\theta}}{(cos(\gamma-\theta)) \cdot s}<br>$$<br>$$<br>&#x3D;\frac{v_x \cdot cos{\theta} + v_y \cdot sin{\theta} +(r_x \cdot sin{\theta}-r_y \cdot cos{\theta}) \cdot \omega}{(cos(\gamma-\theta)) \cdot s}<br>$$</p>
+<p>代入<br>$$<br>\gamma<br>\begin{cases}<br>    \gamma_0&#x3D;180\degree \<br>    \gamma_1&#x3D;180\degree \<br>    \gamma_2&#x3D;0\degree \<br>    \gamma_3&#x3D;0\degree \<br>\end{cases}<br>\theta<br>\begin{cases}<br>    \theta_0&#x3D;135\degree \<br>    \theta_1&#x3D;-135\degree \<br>    \theta_2&#x3D;-45\degree \<br>    \theta_3&#x3D;45\degree \<br>\end{cases}<br>$$</p>
+<h4 id="计算-1"><a href="#计算-1" class="headerlink" title="计算"></a>计算</h4><p>以0号轮为例<br>$$<br>\omega_{w0}<br>\begin{cases}<br>    \theta_0 &#x3D; 135\degree \<br>    \gamma_0 &#x3D; 180\degree<br>\end{cases}<br>$$</p>
+<p>$$<br>\omega_{m0}&#x3D;\frac{(-\frac{\sqrt{2}}{2} \cdot v_x +\frac{\sqrt{2}}{2} \cdot v_y+\frac{\sqrt{2}}{2}(r_x+r_y) \cdot \omega)}{\frac{\sqrt{2}}{2}s}<br>$$</p>
+<p>$$<br>&#x3D;\frac{-v_x+v_y+(r_x+r_y)\omega}{s}<br>$$</p>
+<p>同理可得<br>$$<br>\omega_{m1}&#x3D;\frac{-v_x-v_y+(r_x+r_y)\omega}{s}<br>$$<br>$$<br>\omega_{m2}&#x3D;\frac{v_x-v_y+(r_x+r_y)\omega}{s}<br>$$<br>$$<br>\omega_{m3}&#x3D;\frac{-v_x+v_y+(r_x+r_y)\omega}{s}<br>$$</p>
+<h3 id="舵轮底盘"><a href="#舵轮底盘" class="headerlink" title="舵轮底盘"></a>舵轮底盘</h3><p>对于舵轮底盘</p>
+<p>0 ~ 3号轮组投影点相对x轴正方向夹角$\alpha$分别为$45\degree$,$135\degree$,$-135\degree$,$-45\degree$(为了计算$r_x$,$r_y$)</p>
+<p>$$<br>r_x &#x3D; r  \cdot  \cos\alpha \<br>r_y &#x3D; r  \cdot  \sin\alpha<br>$$</p>
+<p>只需求解各个轮向电机目标角速度<code>target_omega</code>和各个舵向电机角度<code>target_angle</code></p>
+<p>对于轮向电机的<code>target_omega</code>,</p>
+<p>$$<br>\omega_w&#x3D;\frac{|\vec{v_w}|}{s}&#x3D;\frac{(v_x-\omega \cdot r_y ,\ v_y+\omega \cdot r_x)}{s} &#x3D;\frac{\sqrt{(v_x-\omega \cdot r_y)^2+(v_y+\omega \cdot r_x)^2}}{s}<br>$$</p>
+<p>对于舵向电机的<code>target_angle</code>  ($\theta$)</p>
+<p>$$<br>\arg(\vec{v_w})&#x3D;\arg((v_x-\omega \cdot r_y,v_y+\omega \cdot r_x,0))&#x3D;\arctan(v_y+\omega \cdot r_x，v_x-\omega \cdot r_y)<br>$$</p>
+<p>只需要代入<br>$<br>\alpha<br>\begin{cases}<br>    \alpha_0&#x3D;45\degree \<br>    \alpha_1&#x3D;135\degree \<br>    \alpha_2&#x3D;-135\degree \<br>    \alpha_3&#x3D;-45\degree \<br>\end{cases}<br>$<br>即可得出结果</p>
+<h4 id="计算-2"><a href="#计算-2" class="headerlink" title="计算"></a>计算</h4><p>以0号轮为例,$\alpha_0&#x3D;45\degree$<br>$$<br>\begin{cases}<br>   \omega_{w0}&#x3D;\frac{\sqrt{(v_x - \frac{\sqrt{2}}{2}\omega \cdot r)^2+(v_y + \frac{\sqrt{2}}{2}\omega \cdot  r)^2}}{s} \\<br>    \theta_0&#x3D; \arctan(v_x - \frac{\sqrt{2}}{2}\omega \cdot r , v_y + \frac{\sqrt{2}}{2} \omega \cdot r)<br>\end{cases}<br>$$</p>
+<p>同理可得<br>$$<br>\begin{cases}<br>   \omega_{w1}&#x3D;\frac{\sqrt{(v_x - \frac{\sqrt{2}}{2}\omega \cdot r)^2+(v_y - \frac{\sqrt{2}}{2}\omega \cdot  r)^2}}{s} \\<br>    \theta_1&#x3D; \arctan(v_x - \frac{\sqrt{2}}{2}\omega \cdot r , v_y - \frac{\sqrt{2}}{2} \omega \cdot r)<br>\end{cases}<br>$$</p>
+<p>$$<br>\begin{cases}<br>   \omega_{w2}&#x3D;\frac{\sqrt{(v_x + \frac{\sqrt{2}}{2}\omega \cdot r)^2+(v_y - \frac{\sqrt{2}}{2}\omega \cdot  r)^2}}{s} \\<br>    \theta_2&#x3D; \arctan(v_x + \frac{\sqrt{2}}{2}\omega \cdot r , v_y - \frac{\sqrt{2}}{2} \omega \cdot r)<br>\end{cases}<br>$$</p>
+<p>$$<br>\begin{cases}<br>   \omega_{w3}&#x3D;\frac{\sqrt{(v_x + \frac{\sqrt{2}}{2}\omega \cdot r)^2+(v_y + \frac{\sqrt{2}}{2}\omega \cdot r)^2}}{s} \\<br>    \theta_3&#x3D; \arctan(v_x + \frac{\sqrt{2}}{2}\omega \cdot r , v_y + \frac{\sqrt{2}}{2} \omega \cdot r)<br>\end{cases}<br>$$</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/09/24/%E7%94%B5%E6%8E%A7/RMEC/%E5%8A%9F%E7%8E%87%E8%A7%A3%E7%AE%97/">← 下一篇 功率解算</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/08/14/%E7%94%B5%E6%8E%A7/RMEC/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">组内串口通信制定 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E8%A7%84%E5%AE%9A"><span class="toc-number">1.</span> <span class="toc-text">一些规定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8%E5%AD%A6%E8%A7%A3%E7%AE%97"><span class="toc-number">1.1.</span> <span class="toc-text">运动学解算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9F%E5%BA%A6%E8%A7%A3%E7%AE%97"><span class="toc-number">1.2.</span> <span class="toc-text">速度解算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%90%91%E8%BD%AE%E5%BA%95%E7%9B%98"><span class="toc-number">1.2.2.</span> <span class="toc-text">全向轮底盘</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BA%A6%E8%BD%AE%E5%BA%95%E7%9B%98"><span class="toc-number">1.2.3.</span> <span class="toc-text">麦轮底盘</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90-1"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-1"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%88%B5%E8%BD%AE%E5%BA%95%E7%9B%98"><span class="toc-number">1.2.4.</span> <span class="toc-text">舵轮底盘</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-2"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">计算</span></a></li></ol></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>

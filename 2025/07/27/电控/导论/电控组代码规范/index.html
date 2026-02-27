@@ -10,7 +10,7 @@
   font-family: 'JetBrains Mono';
   src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
 }
-</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/MathJax.js"></script><script>MathJax.Hub.Config({
  menuSettings: {
    zoom: "None"
  },
@@ -41,7 +41,7 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
  --dark-background: url('/img/background_dark.png');
  --light-background: url('/img/background_light.jpg');
  --theme-encrypt-confirm: '确认'
-}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/MathJax.js"></script><script>MathJax.Hub.Config({
   menuSettings: {
     zoom: "None"
   },
@@ -91,12 +91,15 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>电控组代码规范</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-07-26T16:00:00.000Z" id="date"> 2025-07-27</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-10T10:43:51.852Z" id="updated"> 2025-11-10</time></div></span></div></div><hr><div id="post-content"><p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。<br><span id="more"></span></p>
-<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>目前，对于代码的命名有很多种，包括但不限于以下<br>| 类型 | 规范 | 示例 |<br>|———|———|———|<br>| 大驼峰 | 首字母大写 | <code>int SendData();</code> <code>struct UserInfo;</code> |<br>| 小驼峰 | 首字母小写，后续单词首字母大写 | <code>int getUserCount;</code> <code>void sendDataPacket();</code> |<br>| 蛇形命名 | 全小写，单词间用下划线连接 | <code>int send_data();</code> <code>size_t buffer_size;</code> |<br>| 全大写蛇形 | 全大写，单词间用下划线连接 | <code>#define MAX_BUFFER_SIZE 1024</code> <code>const int RETRY_COUNT = 3;</code> |<br>| 匈牙利命名法 | 类型前缀 + 描述性名称 | <code>int iCount;</code> <code>char szName[20];</code> <code>BOOL bIsReady;</code> |<br>| 前缀命名 | 模块前缀<em>功能名称 | <code>log_write_file();</code> <code>db_connect_server();</code> <code>net_send_packet();</code> |<br>| 后缀命名 | 功能名称</em>模块后缀 | <code>struct motor_s</code> <code>enum color_e</code> |<br>| Linux内核风格 | 小写蛇形，强调简洁 | <code>list_head;</code> <code>task_struct;</code> <code>mutex_lock();</code> |</p>
-<p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。</p>
-<h1 id="命名规则及代码风格"><a href="#命名规则及代码风格" class="headerlink" title="命名规则及代码风格"></a>命名规则及代码风格</h1><p><strong><em>统一遵循linux命名规则和代码风格</em></strong><br>与标准Linux内核代码有部分区别，如Linux原则上不使用typedef，Linux认为typedef会使可读写变差</p>
-<p>参考文献<br>Linux 内核代码风格<sup><a href="#fn_1" id="reffn_1">1</a></sup><br>Linux 环境下变量命名规则与最佳实践<sup><a href="#fn_2" id="reffn_2">2</a></sup><br>Linux下C语言编程风格和规范<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
-<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><div class="table-container">
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><script>window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>电控组代码规范</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-07-26T16:00:00.000Z" id="date"> 2025-07-27</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-12-03T12:56:18.659Z" id="updated"> 2025-12-03</time></div></span></div></div><hr><div id="post-content"><p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。</p>
+<span id="more"></span>
+
+<h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>目前，对于代码的命名有很多种，包括但不限于以下</p>
 <table>
 <thead>
 <tr>
@@ -105,8 +108,59 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <th>示例</th>
 </tr>
 </thead>
-<tbody>
+<tbody><tr>
+<td>大驼峰</td>
+<td>首字母大写</td>
+<td><code>int SendData();</code> <code>struct UserInfo;</code></td>
+</tr>
 <tr>
+<td>小驼峰</td>
+<td>首字母小写，后续单词首字母大写</td>
+<td><code>int getUserCount;</code> <code>void sendDataPacket();</code></td>
+</tr>
+<tr>
+<td>蛇形命名</td>
+<td>全小写，单词间用下划线连接</td>
+<td><code>int send_data();</code> <code>size_t buffer_size;</code></td>
+</tr>
+<tr>
+<td>全大写蛇形</td>
+<td>全大写，单词间用下划线连接</td>
+<td><code>#define MAX_BUFFER_SIZE 1024</code> <code>const int RETRY_COUNT = 3;</code></td>
+</tr>
+<tr>
+<td>匈牙利命名法</td>
+<td>类型前缀 + 描述性名称</td>
+<td><code>int iCount;</code> <code>char szName[20];</code> <code>BOOL bIsReady;</code></td>
+</tr>
+<tr>
+<td>前缀命名</td>
+<td>模块前缀_功能名称</td>
+<td><code>log_write_file();</code> <code>db_connect_server();</code> <code>net_send_packet();</code></td>
+</tr>
+<tr>
+<td>后缀命名</td>
+<td>功能名称_模块后缀</td>
+<td><code>struct motor_s</code> <code>enum color_e</code></td>
+</tr>
+<tr>
+<td>Linux内核风格</td>
+<td>小写蛇形，强调简洁</td>
+<td><code>list_head;</code> <code>task_struct;</code> <code>mutex_lock();</code></td>
+</tr>
+</tbody></table>
+<p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。</p>
+<h1 id="命名规则及代码风格"><a href="#命名规则及代码风格" class="headerlink" title="命名规则及代码风格"></a>命名规则及代码风格</h1><p><em><strong>统一遵循linux命名规则和代码风格</strong></em><br>与标准Linux内核代码有部分区别，如Linux原则上不使用typedef，Linux认为typedef会使可读写变差</p>
+<p>参考文献<br>Linux 内核代码风格[^1]<br>Linux 环境下变量命名规则与最佳实践[^2]<br>Linux下C语言编程风格和规范<a href="%5BLinux%E4%B8%8BC%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E9%A3%8E%E6%A0%BC%E5%92%8C%E8%A7%84%E8%8C%83%5D(https://zhuanlan.zhihu.com/p/599501566)">^3</a></p>
+<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
 <td>变量</td>
 <td>小写下划线</td>
 <td>present_value</td>
@@ -117,9 +171,9 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <td>KEY_UP</td>
 </tr>
 <tr>
-<td>常量宏</td>
+<td>常量，宏</td>
 <td>全大写</td>
-<td>PWM_MAX</td>
+<td>#define PWM_MAX const uint8_t ID</td>
 </tr>
 <tr>
 <td>结构体类型</td>
@@ -136,9 +190,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <td>小写下划线+后缀(_t)</td>
 <td>typedef struct { } motor_mode_t</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>在定义几个相关的常量时，最好用枚举。</p>
 <p><strong>说明</strong> ：</p>
 <ol>
@@ -147,34 +199,39 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <ul>
 <li>变量名应当反映出变量的<strong>用途或内容</strong>，避免使用无意义的名称。</li>
 <li><strong>禁止出现拼音</strong>。请使用简介明了的英文</li>
-<li>减少使用缩写命名，除非像“temp”（temporary）一样非常通用且容易理解,缩写也要小写</li>
+<li>减少使用缩写命名，除非像“temp”（temporary,常用于表示临时变量）一样非常通用且容易理解,缩写也要小写</li>
 <li>好的代码是不解自明的：通过变量名即可明白该变量的作用。必要时添加注释辅助说明。</li>
 </ul>
-<ol>
-<li>同一模块的变量，使用结构体封装管理 如motor_data_t</li>
+<ol start="2">
+<li>同一模块的变量，使用结构体封装管理 如<code>motor_data_t</code></li>
 <li>特定模块的变量，封装在函数内部，定义为函数内部变量，文件内部变量均标为static</li>
 <li>在项目或代码库中，应保持命名风格的一致性，以便于维护和理解。</li>
 </ol>
-<h2 id="函数规则"><a href="#函数规则" class="headerlink" title="函数规则"></a>函数规则</h2><ol>
+<h3 id="函数规则"><a href="#函数规则" class="headerlink" title="函数规则"></a>函数规则</h3><ol>
 <li>函数以<strong>名词 + 动词</strong>命名,或是<strong>模块名 + 动词 + 名词</strong>，且以<strong>小写下划线</strong>的规则书写</li>
 </ol>
 <ul>
 <li>如‘motor_init’ ‘i2c_read_data’</li>
 </ul>
-<ol>
+<ol start="2">
 <li>函数应该简短而漂亮，并且只做一件事情，而且把它做好。</li>
 <li>一个函数的最大长度是和该函数的复杂度和缩进级数成反比的。所以，如果你有一个理 论上很简单的只有一个很长 (但是简单) 的 case 语句的函数，而且你需要在每个 case 里做很多很小的事情，这样的函数尽管很长，但也是可以的。</li>
 <li>函数的另外一个衡量标准是本地变量的数量。此数量不应超过 5－10 个，否则你的函数就有问题了。</li>
 <li>文件内部调用的函数均标为static，外部调用的函数在头文件中声明</li>
 </ol>
-<h2 id="文件的命名格式"><a href="#文件的命名格式" class="headerlink" title="文件的命名格式"></a>文件的命名格式</h2><ul>
+<h3 id="文件的命名格式"><a href="#文件的命名格式" class="headerlink" title="文件的命名格式"></a>文件的命名格式</h3><ul>
 <li><p>对于所有的文件夹统一使用第一个字母大写的方案，例如：Bsp、Hardware、Control，Src，Inc</p>
 </li>
 <li><p>对于所有的.c和.h文件则是使用全小写方案，例如：led.c、led.h</p>
 </li>
+<li><p>对于使用分层架构设计的文件，加上该文件对应的前缀，例如drv_can.c,dev_oled</p>
+</li>
 </ul>
-<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><p>宏的名字请用大写字母，不过形如函数的宏的名字可以用小写字母。<br>一般的，如果能写成内联函数就不要写成像函数的宏。<br>含有多个语句的宏应该被包含在一个 do-while{0} 代码块里：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> macrofun(a, b, c)                       \</span><br><span class="hljs-meta">        do &#123;                                    \</span><br><span class="hljs-meta">                <span class="hljs-keyword">if</span> (a == 5)                     \</span><br><span class="hljs-meta">                    do_this(b, c);              \</span><br><span class="hljs-meta">        &#125; while (0)</span><br></code></pre></td></tr></table></figure></p>
-<h3 id="内联（C语言并不常用）"><a href="#内联（C语言并不常用）" class="headerlink" title="内联（C语言并不常用）"></a>内联（C语言并不常用）</h3><p>有一个常见的误解是 内联 是 gcc 提供的可以让代码运行更快的一个选项。虽然使 用内联函数有时候是恰当的 (比如作为一种替代宏的方式，请看第十二章)，不过很多情 况下不是这样。inline 的过度使用会使内核变大，从而使整个系统运行速度变慢。</p>
+<h3 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h3><p>统一使用<code>UTF-8</code>编码，严禁使用<code>GBK</code>或<code>GB2312</code>！！！</p>
+<h3 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h3><p>宏的名字请用大写字母，不过形如函数的宏的名字可以用小写字母。<br>一般的，如果能写成内联函数就不要写成像函数的宏。<br>含有多个语句的宏应该被包含在一个 do-while{0} 代码块里：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> macro_function(a, b, c)                       \</span><br><span class="hljs-meta">        do &#123;                                    \</span><br><span class="hljs-meta">                <span class="hljs-keyword">if</span> (a == 5)                     \</span><br><span class="hljs-meta">                    do_this(b, c);              \</span><br><span class="hljs-meta">        &#125; while (0)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="内联（C语言并不常用）"><a href="#内联（C语言并不常用）" class="headerlink" title="内联（C语言并不常用）"></a>内联（C语言并不常用）</h3><p>有一个常见的误解是 内联 是 gcc 提供的可以让代码运行更快的一个选项。虽然使用内联函数有时候是恰当的 (比如作为一种替代宏的方式，请看第十二章)，不过很多情况下不是这样。inline 的过度使用会使内核变大，从而使整个系统运行速度变慢。</p>
 <p>总之，</p>
 <blockquote>
 <p>一个基本的原则：内联函数通常不超过三行</p>
@@ -186,57 +243,131 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 </li>
 </ol>
 <blockquote>
-<p>头文件保护一定要写<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> __LED_H__ <span class="hljs-comment">//文件大写</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> __LED_H__</span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure></p>
+<p>头文件保护一定要写</p>
 </blockquote>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>Linux风格的注释是c89 “/<em>…</em> /”风格。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> __LED_H__ <span class="hljs-comment">//文件大写</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> __LED_H__</span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>Linux风格的注释是c89 “&#x2F;<em>…</em> &#x2F;”风格。</p>
 <ul>
-<li><p>长 (多行) 注释的首选风格是：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * This is the preferred style for multi-line</span><br><span class="hljs-comment"> * comments in the Linux kernel source code.</span><br><span class="hljs-comment"> * Please use it consistently.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * Description:  A column of asterisks on the left side,</span><br><span class="hljs-comment"> * with beginning and ending almost-blank lines.</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>对于单个函数，我们希望</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief : 描述该函数主要功能</span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述  </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述 </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述    </span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @return : 返回值的说明</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>对于整个文件的注释，我们希望</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> *  Copyright (C), 2025CCUT_1024lab</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @file    oled.c</span><br><span class="hljs-comment"> *  @brief   0.96oled驱动函数</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @note    使用方法和注意事项</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *-----------------------------------------------------------------------------</span><br><span class="hljs-comment"> *  @note 历史版本  修改人员    修改日期    修改内容</span><br><span class="hljs-comment"> *  @note V1.0.0   cherno    20250805   1.done</span><br><span class="hljs-comment"> *        V1.0.1   yyh       20250806   2.update</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
-</li>
+<li>长 (多行) 注释的首选风格是：</li>
 </ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * This is the preferred style for multi-line</span><br><span class="hljs-comment"> * comments in the Linux kernel source code.</span><br><span class="hljs-comment"> * Please use it consistently.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * Description:  A column of asterisks on the left side,</span><br><span class="hljs-comment"> * with beginning and ending almost-blank lines.</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对于单个函数，我们希望</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief : 描述该函数主要功能</span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述  </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述 </span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述    </span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * @return : 返回值的说明</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对于整个文件的注释，我们希望</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> *  Copyright (C), 2025CCUT_1024lab</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @file    oled.c</span><br><span class="hljs-comment"> *  @brief   0.96oled驱动函数</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @note    使用方法和注意事项</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *-----------------------------------------------------------------------------</span><br><span class="hljs-comment"> *  @note 历史版本  修改人员    修改日期    修改内容</span><br><span class="hljs-comment"> *  @note V1.0.0   cherno    20250805   1.done</span><br><span class="hljs-comment"> *        V1.0.1   yyh       20250806   2.update</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>原则：</strong></p>
 <ol>
 <li><p>注释是好的，不过有过度注释的危险。永远不要在注释里解释你的代码是如何运作的： 更好的做法是让别人一看你的代码就可以明白，解释写的很差的代码是浪费时间。</p>
 </li>
-<li><p>一般的，你想要你的注释告诉别人你的代码<strong>做了什么</strong>，而不是怎么做的。也请你尽量不要把注释放在一个函数体内部：如果函数复杂到你需要独立的注释其中的一部分（点名批评逐行注释），那么你的函数不符合<a href="#函数规则">函数规则</a></p>
+<li><p>一般的，你想要你的注释告诉别人你的代码<strong>做了什么</strong>，而不是怎么做的。也请你尽量不要把注释放在一个函数体内部：如果函数复杂到你需要独立的注释其中的一部分（点名批评逐行注释），那么你的函数不符合<a href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99">函数规则</a></p>
 </li>
 <li><p>你应该做的，是把注释放在函数的头部，告诉人们它做了什么，也可以加上它做这些事情的原因。</p>
 </li>
 </ol>
 <h3 id="封装（严格要求）"><a href="#封装（严格要求）" class="headerlink" title="封装（严格要求）"></a>封装（严格要求）</h3><p>模块库中代码模板为</p>
 <blockquote>
-<p>template.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> *  @copyright (C)      2025CCUT_1024lab_Damocles</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @file    template.c</span><br><span class="hljs-comment"> *  @brief   封装模块代码规范</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @note    使用方法</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @attention 注意事项</span><br><span class="hljs-comment"> *-----------------------------------------------------------------------------</span><br><span class="hljs-comment"> *  @version    @author    @date    @note</span><br><span class="hljs-comment"> *  V1.0.0      Cherno    250808    done</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *==============================================================================</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/*==============================Includes======================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateMacros=================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateTypes==================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateVariables==============================*/</span><br><br><span class="hljs-comment">/*==============================PrivateFunctionDeclarations===================*/</span><br><br><span class="hljs-comment">/*==============================FunctionPrototypes============================*/</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief : 描述该函数主要功能</span><br><span class="hljs-comment"> * @note : 注意事项</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述</span><br><span class="hljs-comment"> * @return : 返回值的说明</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/*========================COPYRIGHT(C) CCUT-DAMOCLES==========================*/</span><br></code></pre></td></tr></table></figure><br>template.h<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> __X_H__</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> __X_H__</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/*=============================Include========================================*/</span><br><br><span class="hljs-comment">/*==============================ExportedMacros================================*/</span><br><br><span class="hljs-comment">/*=============================ExportedTypes==================================*/</span><br><br><span class="hljs-comment">/*=============================ExportedDefinitions============================*/</span><br><br><span class="hljs-comment">/*=============================ExportedFunctionDeclarations===================*/</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/*========================COPYRIGHT(C) CCUT-DAMOCLES==========================*/</span><br></code></pre></td></tr></table></figure></p>
+<p>template.c</p>
 </blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *=============================================================================</span><br><span class="hljs-comment"> *  @copyright (C)      2025CCUT_1024lab_Damocles</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @file    template.c</span><br><span class="hljs-comment"> *  @brief   封装模块代码规范</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @note    使用方法</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *  @attention 注意事项</span><br><span class="hljs-comment"> *-----------------------------------------------------------------------------</span><br><span class="hljs-comment"> *  @version    @author    @date    @note</span><br><span class="hljs-comment"> *  V1.0.0      Cherno    250808    done</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *==============================================================================</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/*==============================Includes======================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateMacros=================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateTypes==================================*/</span><br><br><span class="hljs-comment">/*==============================PrivateVariables==============================*/</span><br><br><span class="hljs-comment">/*==============================PrivateFunctionDeclarations===================*/</span><br><br><span class="hljs-comment">/*==============================FunctionPrototypes============================*/</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief : 描述该函数主要功能</span><br><span class="hljs-comment"> * @note : 注意事项</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @param : 参数名（与函数里的参数一致）  参数的描述</span><br><span class="hljs-comment"> * @return : 返回值的说明</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/*========================COPYRIGHT(C) CCUT-DAMOCLES==========================*/</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>template.h</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> __X_H__</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> __X_H__</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/*=============================Include========================================*/</span><br><br><span class="hljs-comment">/*==============================ExportedMacros================================*/</span><br><br><span class="hljs-comment">/*=============================ExportedTypes==================================*/</span><br><br><span class="hljs-comment">/*=============================ExportedDefinitions============================*/</span><br><br><span class="hljs-comment">/*=============================ExportedFunctionDeclarations===================*/</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/*========================COPYRIGHT(C) CCUT-DAMOCLES==========================*/</span><br></code></pre></td></tr></table></figure>
+
 <p>要封装的代码请严格按照要求</p>
-<h3 id="C-C-兼容性"><a href="#C-C-兼容性" class="headerlink" title="C/C++ 兼容性"></a>C/C++ 兼容性</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/* ...代码内容... */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="C-C-兼容性"><a href="#C-C-兼容性" class="headerlink" title="C&#x2F;C++ 兼容性"></a>C&#x2F;C++ 兼容性</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><br><span class="hljs-comment">/* ...代码内容... */</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br>&#125;<br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
 <h3 id="多芯片适配"><a href="#多芯片适配" class="headerlink" title="多芯片适配"></a>多芯片适配</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(USE_HAL_DRIVER)</span><br>  <span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(STM32F405xx) || defined(STM32F407xx)</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stm32f4xx_hal.h&gt;</span></span><br>  <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>  <span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(STM32F103xx)</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stm32f1xx_hal.h&gt;</span></span><br>  <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br>  <span class="hljs-meta">#<span class="hljs-keyword">if</span> defined(STM32H750xx)</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stm32h7xx_hal.h&gt;</span></span><br>  <span class="hljs-meta">#<span class="hljs-keyword">endif</span>	</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
-<h2 id="C-C-混合编程"><a href="#C-C-混合编程" class="headerlink" title="C/C++混合编程"></a>C/C++混合编程</h2><p>对命名规则不做修改，仅添加新的类，并对类的形参进行约束<br>| 类型 | 规范 | 示例 |<br>|-|-|-|<br>| 类 | 大驼峰 | class KeyStatus |<br>| 类变量 | 同变量（全小写+下划线） | uint8<em>t now_status; |<br>| 类实例 | 同变量（全小写+下划线） | KeyStatus key1 |<br>| 类函数 | 同函数（全小写+下划线） | void timer_reload_callback() |<br>| 类内联函数| 同函数（在.h实现） | inline uint8_t get_now_status(); |<br>| 类函数形参| +前缀’</em>‘ | void control(uint8_t _status) |</p>
+
+<h3 id="C-C-混合编程"><a href="#C-C-混合编程" class="headerlink" title="C&#x2F;C++混合编程"></a>C&#x2F;C++混合编程</h3><p>对命名规则不做修改，仅添加新的类，并对类的形参进行约束</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类</td>
+<td>大驼峰</td>
+<td>class KeyStatus</td>
+</tr>
+<tr>
+<td>类变量</td>
+<td>同变量（全小写+下划线）</td>
+<td>uint8_t now_status;</td>
+</tr>
+<tr>
+<td>类实例</td>
+<td>同变量（全小写+下划线）</td>
+<td>KeyStatus key1</td>
+</tr>
+<tr>
+<td>类函数</td>
+<td>同函数（全小写+下划线）</td>
+<td>void timer_reload_callback()</td>
+</tr>
+<tr>
+<td>类内联函数</td>
+<td>同函数（在.h实现）</td>
+<td>inline uint8_t get_now_status();</td>
+</tr>
+<tr>
+<td>类函数形参</td>
+<td>+前缀’_’</td>
+<td>void control(uint8_t _status)</td>
+</tr>
+</tbody></table>
 <h2 id="代码风格（不做强制要求）"><a href="#代码风格（不做强制要求）" class="headerlink" title="代码风格（不做强制要求）"></a>代码风格（不做强制要求）</h2><p>代码风格的意义就在于使用平常使用的工具来维持代码的可读性和可维护性。</p>
 <p>但介于每个人都有自己的代码风格，这个部分不会硬性要求统一，但还是推荐使用以下代码风格</p>
 <h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>制表符是 4 个字符，所以缩进也是 4 个字符。<br><strong>理由</strong>：缩进的全部意义就在于清楚的定义一个控制块起止于何处。尤其是当你盯着你的 屏幕连续看了 20 小时之后，你将会发现大一点的缩进会使你更容易分辨缩进。</p>
 <h3 id="把长的行和字符串打散"><a href="#把长的行和字符串打散" class="headerlink" title="把长的行和字符串打散"></a>把长的行和字符串打散</h3><p>每一行的长度的限制是 80 列，我们强烈建议您遵守这个惯例。</p>
-<h3 id="括号“-”和“-”的使用原则"><a href="#括号“-”和“-”的使用原则" class="headerlink" title="括号“{”和“}”的使用原则"></a>括号“{”和“}”的使用原则</h3><p>1) 对于结构体、if/for/while/switch语句, “{”<strong>不另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">struct var_data &#123;<br>    int len;<br>    char data[0];<br>&#125;;<br> <br>if (a == b) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br> <br>for (i = 0; i &lt; 10; i++) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>2) if和else混用的情况下, else语句<strong>不另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">if (x == y)&#123;<br>    ...<br>&#125; else if (x &gt; y) &#123;<br>    ...<br>&#125; else &#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>3) 对于函数, “{”<strong>另起一行</strong>,例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int add (int a, int b)<br>&#123;<br>    return a + b;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<h3 id="空格的使用"><a href="#空格的使用" class="headerlink" title="空格的使用"></a>空格的使用</h3><p>1) 关键字后加空格<br>在这些关键字后面加空格：</p>
+<h3 id="括号“-”和“-”的使用原则"><a href="#括号“-”和“-”的使用原则" class="headerlink" title="括号“{”和“}”的使用原则"></a>括号“{”和“}”的使用原则</h3><ol>
+<li>对于结构体、if&#x2F;for&#x2F;while&#x2F;switch语句, “{”<strong>不另起一行</strong>,例如:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">struct var_data &#123;<br>    int len;<br>    char data[0];<br>&#125;;<br> <br>if (a == b) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br> <br>for (i = 0; i &lt; 10; i++) &#123;<br>    a = c;<br>    d = a;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>if和else混用的情况下, else语句<strong>不另起一行</strong>,例如:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">if (x == y)&#123;<br>    ...<br>&#125; else if (x &gt; y) &#123;<br>    ...<br>&#125; else &#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>对于函数, “{”<strong>另起一行</strong>,例如:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">int add (int a, int b)<br>&#123;<br>    return a + b;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="空格的使用"><a href="#空格的使用" class="headerlink" title="空格的使用"></a>空格的使用</h3><ol>
+<li>关键字后加空格<br>在这些关键字后面加空格：</li>
+</ol>
 <blockquote>
 <p>if, switch, case, for, do, while</p>
 </blockquote>
 <p>但是这些不加：</p>
 <blockquote>
-<p>sizeof, typeof, alignof, <strong>attribute</strong><br>例如:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">for (i = 0; i &lt; 10; i++) <br>    a = c;<br>if （x &gt; y）<br><br>s=sizeof(int)<br></code></pre></td></tr></table></figure></p>
+<p>sizeof, typeof, alignof, <strong>attribute</strong><br>例如:</p>
 </blockquote>
-<p>2) 括号内，紧挨着括号不加空格</p>
-<p>3) 对于指针，”*“号挨着名字而不是类型</p>
-<p>4) 操作符两侧加空格<br>以下二元或三元操作符两侧要加空格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">for (i = 0; i &lt; 10; i++) <br>    a = c;<br>if （x &gt; y）<br><br>s=sizeof(int)<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>括号内，紧挨着括号不加空格</p>
+</li>
+<li><p>对于指针，”*“号挨着名字而不是类型</p>
+</li>
+<li><p>操作符两侧加空格<br>以下二元或三元操作符两侧要加空格：</p>
+</li>
+</ol>
 <blockquote>
-<p>= + - &lt; &gt; * / % | &amp; ^ &lt;= &gt;= == != ? :</p>
+<p>&#x3D; + - &lt; &gt; * &#x2F; % | &amp; ^ &lt;&#x3D; &gt;&#x3D; &#x3D;&#x3D; !&#x3D; ? :</p>
 </blockquote>
 <p>但是以下一元操作符，不加空格：</p>
 <blockquote>
@@ -244,7 +375,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 </blockquote>
 <p>自增自减符号。不加空格：</p>
 <blockquote>
-<p>++ —</p>
+<p>++ –</p>
 </blockquote>
 <p>结构体成员操作符，不加空格：</p>
 <blockquote>
@@ -252,13 +383,6 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 </blockquote>
 <p><strong>不要在行尾加空格。</strong></p>
 <p>author：Cherno</p>
-<blockquote id="fn_1">
-<sup>1</sup>. <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/v4.15/translations/zh_CN/coding-style.html">Linux 内核代码风格</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_2">
-<sup>2</sup>. <a target="_blank" rel="noopener" href="https://my.oschina.net/emacs_8811540/blog/17320005">Linux 环境下变量命名规则与最佳实践</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
-</blockquote>
-<blockquote id="fn_3">
-<sup>3</sup>. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599501566">Linux下C语言编程风格和规范</a><a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
-</blockquote>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/10/09/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%96%91%E9%97%AE%E4%B9%8B%E7%BE%8E/">← 下一篇 疑问之美：成为信息时代真正的主宰</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/07/23/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/CubeMX%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">CubeMX配置详解 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%8F%8A%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">命名规则及代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">命名规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-number">2.2.</span> <span class="toc-text">函数规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%91%BD%E5%90%8D%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">文件的命名格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">2.4.</span> <span class="toc-text">宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%EF%BC%88C%E8%AF%AD%E8%A8%80%E5%B9%B6%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">内联（C语言并不常用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.4.2.</span> <span class="toc-text">条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.4.3.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%EF%BC%88%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.4.4.</span> <span class="toc-text">封装（严格要求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.4.5.</span> <span class="toc-text">C&#x2F;C++ 兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%8A%AF%E7%89%87%E9%80%82%E9%85%8D"><span class="toc-number">2.4.6.</span> <span class="toc-text">多芯片适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-number">2.5.</span> <span class="toc-text">C&#x2F;C++混合编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%EF%BC%88%E4%B8%8D%E5%81%9A%E5%BC%BA%E5%88%B6%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.6.</span> <span class="toc-text">代码风格（不做强制要求）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">2.6.1.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E9%95%BF%E7%9A%84%E8%A1%8C%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%93%E6%95%A3"><span class="toc-number">2.6.2.</span> <span class="toc-text">把长的行和字符串打散</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E2%80%9C-%E2%80%9D%E5%92%8C%E2%80%9C-%E2%80%9D%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">2.6.3.</span> <span class="toc-text">括号“{”和“}”的使用原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.6.4.</span> <span class="toc-text">空格的使用</span></a></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>
+<p>[^1]: <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/v4.15/translations/zh_CN/coding-style.html">Linux 内核代码风格</a></p>
+<p>[^2]: <a target="_blank" rel="noopener" href="https://my.oschina.net/emacs_8811540/blog/17320005">Linux 环境下变量命名规则与最佳实践</a></p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/08/14/%E7%94%B5%E6%8E%A7/RMEC/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">← 下一篇 组内串口通信制定</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/07/23/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/CubeMX%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">CubeMX配置详解 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%8F%8A%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">命名规则及代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-number">2.1.1.</span> <span class="toc-text">函数规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%91%BD%E5%90%8D%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">文件的命名格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">编码格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">2.1.4.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%EF%BC%88C%E8%AF%AD%E8%A8%80%E5%B9%B6%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">内联（C语言并不常用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.6.</span> <span class="toc-text">条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.1.7.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%EF%BC%88%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.1.8.</span> <span class="toc-text">封装（严格要求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.1.9.</span> <span class="toc-text">C&#x2F;C++ 兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%8A%AF%E7%89%87%E9%80%82%E9%85%8D"><span class="toc-number">2.1.10.</span> <span class="toc-text">多芯片适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-number">2.1.11.</span> <span class="toc-text">C&#x2F;C++混合编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%EF%BC%88%E4%B8%8D%E5%81%9A%E5%BC%BA%E5%88%B6%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">代码风格（不做强制要求）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">2.2.1.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E9%95%BF%E7%9A%84%E8%A1%8C%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%93%E6%95%A3"><span class="toc-number">2.2.2.</span> <span class="toc-text">把长的行和字符串打散</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E2%80%9C-%E2%80%9D%E5%92%8C%E2%80%9C-%E2%80%9D%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.3.</span> <span class="toc-text">括号“{”和“}”的使用原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text">空格的使用</span></a></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>
