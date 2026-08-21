@@ -1,0 +1,702 @@
+<!DOCTYPE html><html lang="zh-cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CAN 掩码计算器 | Cherno-Sagiri</title><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('/img/background_dark.png');
+ --light-background: url('/img/background_light.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>CAN 掩码计算器</h1></div><hr><div id="post-content">
+<div id="canmask-tool">
+    <style>
+        #canmask-tool * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+
+        #canmask-tool {
+            background: var(--theme-bg-trans1);
+            border: 1px solid var(--theme-border-soft);
+            border-radius: 32px;
+            padding: 20px;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            font-size: 15px;
+            color: var(--theme-text);
+            line-height: 1.5;
+        }
+
+        .card {
+            max-width: 1300px;
+            width: 100%;
+            background: transparent;
+            border-radius: 32px;
+            padding: 28px 30px 40px;
+            transition: 0.2s;
+        }
+
+        #canmask-tool h1 {
+            font-weight: 500;
+            font-size: 28px;
+            margin: 0 0 6px 0;
+            color: var(--theme-text-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .subhead {
+            color: var(--theme-text);
+            font-size: 15px;
+            margin: 0 0 24px 0;
+            border-left: 4px solid var(--theme-highlight);
+            padding-left: 16px;
+            background: rgba(34, 187, 255, 0.08);
+            border-radius: 0 12px 12px 0;
+            line-height: 1.5;
+        }
+
+        .input-panel {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 18px 20px;
+            background: rgba(34, 187, 255, 0.05);
+            padding: 20px 22px;
+            border-radius: 24px;
+            margin-bottom: 28px;
+            border: 1px solid var(--theme-border-soft);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1 1 160px;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--theme-highlight);
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .input-group label span {
+            background: rgba(34, 187, 255, 0.15);
+            padding: 0 8px;
+            border-radius: 30px;
+            font-size: 11px;
+            color: var(--theme-highlight);
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            background: var(--theme-bg-trans2);
+            border: 1px solid var(--theme-border-soft);
+            border-radius: 60px;
+            padding: 0 8px 0 18px;
+            transition: 0.15s;
+        }
+
+        .input-row:focus-within {
+            border-color: var(--theme-highlight);
+            box-shadow: 0 0 0 3px rgba(34, 187, 255, 0.18);
+        }
+
+        .input-row input {
+            border: none;
+            background: transparent;
+            padding: 12px 6px 12px 0;
+            font-size: 15px;
+            width: 100%;
+            min-width: 80px;
+            outline: none;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            color: var(--theme-text-light);
+        }
+
+        .input-row input::placeholder {
+            color: var(--theme-unimportant);
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .input-row .prefix {
+            color: var(--theme-unimportant);
+            font-weight: 500;
+            font-size: 14px;
+            margin-right: 4px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: var(--theme-bg-trans2);
+            padding: 0 14px;
+            border-radius: 60px;
+            border: 1px solid var(--theme-border-soft);
+            height: 48px;
+            flex: 0 0 auto;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--theme-text);
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: var(--theme-highlight);
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #1a6fc4, #2ba9e0);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 12px 28px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(34, 187, 255, 0.25);
+            letter-spacing: 0.3px;
+            flex: 0 0 auto;
+            margin-left: auto;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #155aa8, #2598d8);
+            transform: scale(0.97);
+            box-shadow: 0 6px 14px rgba(34, 187, 255, 0.35);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .result-area {
+            margin-top: 8px;
+        }
+
+        .summary {
+            background: rgba(34, 187, 255, 0.08);
+            border-radius: 20px;
+            padding: 12px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            border-left: 6px solid var(--theme-highlight);
+        }
+
+        .summary .stat {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 15px;
+        }
+
+        .summary .stat strong {
+            font-weight: 600;
+            color: var(--theme-text-light);
+        }
+
+        .summary .badge {
+            background: var(--theme-highlight);
+            color: #001b2b;
+            padding: 4px 16px;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .filter-item {
+            background: var(--theme-bg-trans2);
+            border-radius: 20px;
+            border: 1px solid var(--theme-border-soft);
+            padding: 16px 22px;
+            transition: 0.1s;
+        }
+
+        .filter-item:hover {
+            border-color: var(--theme-highlight);
+        }
+
+        .filter-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 24px;
+            margin-bottom: 8px;
+        }
+
+        .filter-header .filter-label {
+            font-weight: 600;
+            color: var(--theme-highlight);
+            background: rgba(34, 187, 255, 0.15);
+            padding: 0 12px;
+            border-radius: 60px;
+            font-size: 14px;
+        }
+
+        .filter-mask {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 238, 34, 0.08);
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 238, 34, 0.3);
+            color: var(--theme-text-light);
+        }
+
+        .filter-range {
+            color: var(--theme-text);
+            font-size: 15px;
+            background: rgba(34, 187, 255, 0.08);
+            padding: 2px 14px;
+            border-radius: 40px;
+        }
+
+        .filter-binary {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 18px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--theme-text);
+            background: rgba(34, 187, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid var(--theme-border-soft);
+        }
+
+        .filter-binary span {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--theme-background);
+            padding: 0 8px;
+            border-radius: 20px;
+        }
+
+        .binary-highlight {
+            background: rgba(34, 187, 255, 0.18);
+            color: var(--theme-highlight);
+            padding: 1px 6px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .bit1 {
+            color: #2bf;
+            background: rgba(34, 187, 255, 0.2);
+            padding: 0 4px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .bit0 {
+            opacity: 0.3;
+        }
+
+        .empty-message {
+            color: var(--theme-text);
+            background: var(--theme-bg-soft);
+            padding: 20px 24px;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px dashed var(--theme-border-soft);
+        }
+
+        .footnote {
+            margin-top: 28px;
+            font-size: 13px;
+            color: var(--theme-unimportant);
+            border-top: 1px solid var(--theme-border-soft);
+            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footnote code {
+            background: var(--theme-bg-soft);
+            color: var(--theme-text);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            .card {
+                padding: 20px 16px;
+            }
+
+            .input-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                margin-left: 0;
+                justify-content: center;
+            }
+
+            .radio-group {
+                justify-content: center;
+            }
+
+            .summary {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+    <div class="card">
+        <h1>📡 CAN 掩码计算器</h1>
+        <div class="subhead">
+            输入起始 ID · 结束 ID · 自动拆分 Filter + Mask · 二进制位可视化
+        </div>
+
+        <div class="input-panel">
+            <div class="input-group">
+                <label>起始 ID <span>hex</span></label>
+                <div class="input-row">
+                    <span class="prefix">0x</span>
+                    <input type="text" id="startId" value="200" placeholder="200" spellcheck="false">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>结束 ID <span>hex</span></label>
+                <div class="input-row">
+                    <span class="prefix">0x</span>
+                    <input type="text" id="endId" value="207" placeholder="207" spellcheck="false">
+                </div>
+            </div>
+            <div class="radio-group">
+                <label><input type="radio" name="bitMode" value="11" checked> 标准 11-bit</label>
+                <label><input type="radio" name="bitMode" value="29"> 扩展 29-bit</label>
+            </div>
+            <button class="btn" id="calcBtn">⟳ 计算掩码</button>
+        </div>
+
+        <div class="result-area" id="resultArea">
+            <!-- 动态渲染 -->
+        </div>
+        <div class="footnote">
+            <span>🔍 忽略Mask: 位=1 忽略 · 固定Mask: 位=1 必须匹配，二者互补（固定 = ~忽略 & maxId）</span>
+            <span><code>Filter 高 N 位固定 + 忽略Mask 低位全 1 = 精确覆盖一段连续区间</code></span>
+        </div>
+    </div>
+    <script data-pjax-tool>
+        // 可重入的初始化函数：首载与 PJAX 跳转后都会执行
+        window.canmaskInit = (function () {
+            const startInput = document.getElementById('startId');
+            const endInput = document.getElementById('endId');
+            const calcBtn = document.getElementById('calcBtn');
+            const resultArea = document.getElementById('resultArea');
+            // PJAX 重执行脚本时元素可能尚未就绪，缺任一元素则跳过本次初始化
+            if (!startInput || !endInput || !calcBtn || !resultArea) return;
+
+            // 获取当前帧类型
+            function getBitLength() {
+                const radio = document.querySelector('input[name="bitMode"]:checked');
+                return radio ? parseInt(radio.value, 10) : 11;
+            }
+
+            // 十六进制解析，支持 0x 前缀
+            function parseHexInput(value) {
+                if (typeof value !== 'string') return NaN;
+                let cleaned = value.trim();
+                if (cleaned.startsWith('0x') || cleaned.startsWith('0X')) {
+                    cleaned = cleaned.substring(2);
+                }
+                return parseInt(cleaned, 16);
+            }
+
+            // 格式化十六进制，带 0x
+            function toHex(num, bitLength) {
+                const hexStr = num.toString(16).toUpperCase();
+                if (bitLength === 11) {
+                    return '0x' + hexStr.padStart(3, '0');
+                } else {
+                    return '0x' + hexStr.padStart(8, '0');
+                }
+            }
+
+            // 生成二进制字符串，按位分组 (11-bit 或 29-bit)
+            function toBinary(num, bitLength) {
+                let bin = num.toString(2).padStart(bitLength, '0');
+                if (bitLength === 11) {
+                    // 分组: 4-4-3
+                    return bin.slice(0, 4) + ' ' + bin.slice(4, 8) + ' ' + bin.slice(8, 11);
+                } else { // 29-bit
+                    // 分组: 4-4-4-4-4-4-4-1 (7组4位 + 1位)
+                    let parts = [];
+                    for (let i = 0; i < 7; i++) {
+                        parts.push(bin.slice(i * 4, i * 4 + 4));
+                    }
+                    parts.push(bin.slice(28, 29));
+                    return parts.join(' ');
+                }
+            }
+
+            // 核心：计算最小掩码集合
+            // 采用"对齐块拆分"算法：每个 Filter 覆盖一个 2^k 对齐的连续区间，
+            // 保证精确覆盖（不多收、不漏收），且 Filter 数量最少。
+            // 例：0x201~0x208 → {0x201,m0} {0x202,m1} {0x204,m3} {0x208,m0} 共 4 个
+            function computeFilters(startId, endId, bitLength) {
+                if (isNaN(startId) || isNaN(endId) || startId < 0 || endId < 0 || startId > endId) {
+                    return [];
+                }
+                const maxId = (1 << bitLength) - 1;
+                if (startId > maxId || endId > maxId) {
+                    return [];
+                }
+
+                const result = [];
+                let current = startId;
+
+                while (current <= endId) {
+                    // 找从 current 起、2^(k+1) 对齐且不越界的最大块（size = 2^k）
+                    let k = 0;
+                    while (k < bitLength &&
+                        (current & ((1 << (k + 1)) - 1)) === 0 &&      // current 是 2^(k+1) 的倍数
+                        (current + (1 << (k + 1)) - 1) <= endId) {     // 块不越过 endId
+                        k++;
+                    }
+
+                    const size = 1 << k;
+                    const mask = size - 1;                 // 忽略低 k 位（STM32 掩码位=1 表示忽略）
+                    const filter = current & ~mask;        // 高 (bitLength-k) 位作为匹配值
+
+                    result.push({
+                        filter: filter,
+                        mask: mask,
+                        start: current,
+                        end: current + size - 1
+                    });
+                    current += size;
+
+                    if (result.length > 100) break;
+                }
+
+                return result;
+            }
+
+            function renderResult() {
+                const rawStart = startInput.value;
+                const rawEnd = endInput.value;
+                const bitLength = getBitLength();
+                const startId = parseHexInput(rawStart);
+                const endId = parseHexInput(rawEnd);
+
+                // 验证
+                if (isNaN(startId) || isNaN(endId)) {
+                    resultArea.innerHTML = `<div class="empty-message">⚠️ 请输入有效的十六进制 ID (如 200, 0x7FF)</div>`;
+                    return;
+                }
+                const maxId = (1 << bitLength) - 1;
+                if (startId < 0 || endId < 0 || startId > maxId || endId > maxId) {
+                    resultArea.innerHTML = `<div class="empty-message">⚠️ ID 超出 ${bitLength}-bit 范围 (0 ~ ${toHex(maxId, bitLength)})</div>`;
+                    return;
+                }
+                if (startId > endId) {
+                    resultArea.innerHTML = `<div class="empty-message">⚠️ 起始 ID 不能大于结束 ID</div>`;
+                    return;
+                }
+
+                const filters = computeFilters(startId, endId, bitLength);
+                if (!filters || filters.length === 0) {
+                    resultArea.innerHTML = `<div class="empty-message">⚠️ 无法计算，请检查输入范围</div>`;
+                    return;
+                }
+
+                // 统计信息
+                const totalIds = endId - startId + 1;
+                const coveredIds = filters.reduce((sum, f) => sum + (f.end - f.start + 1), 0);
+                const singleMaskOk = filters.length === 1 && coveredIds === totalIds;
+
+                let html = `<div class="summary">
+                <div class="stat">
+                    <span><strong>📌 范围</strong> ${toHex(startId, bitLength)} ~ ${toHex(endId, bitLength)}</span>
+                    <span><strong>🧩 ID 数量</strong> ${totalIds}</span>
+                    <span><strong>📦 Filter 数</strong> ${filters.length}</span>
+                    <span><strong>✅ 覆盖</strong> ${coveredIds === totalIds ? '完整 ✓' : '不完整 ⚠️'}</span>
+                    <span><strong>🔗 单个 Mask 覆盖</strong> ${singleMaskOk ? '可以 ✓' : `需拆分 ${filters.length} 个`}</span>
+                </div>
+                <span class="badge">${bitLength}-bit</span>
+            </div>`;
+
+                html += `<div class="filter-grid">`;
+                filters.forEach((f, idx) => {
+                    const filterHex = toHex(f.filter, bitLength);
+                    const maskHex = toHex(f.mask, bitLength);                  // 忽略掩码（1=忽略，STM32 语义）
+                    const fixedMaskHex = toHex((~f.mask) & maxId, bitLength);  // 固定掩码（1=必须匹配）
+                    const rangeStartHex = toHex(f.start, bitLength);
+                    const rangeEndHex = toHex(f.end, bitLength);
+
+                    // 二进制显示
+                    const filterBin = toBinary(f.filter, bitLength);
+                    const maskBin = toBinary(f.mask, bitLength);               // 忽略掩码二进制
+                    const fixedMaskBin = toBinary((~f.mask) & maxId, bitLength); // 固定掩码二进制
+
+                    // 固定掩码二进制：1(必须匹配) 高亮，0(任意) 淡化
+                    const fixedMaskBinHtml = fixedMaskBin.split(' ').map(g =>
+                        g.replace(/1/g, '<span class="bit1">1</span>')
+                            .replace(/0/g, '<span class="bit0">0</span>')
+                    ).join(' ');
+
+                    // 判断是否精确覆盖目标范围
+                    const isCovered = (f.start >= startId && f.end <= endId);
+
+                    // STM32 32-bit 滤波寄存器高 16 位值（CAN_FILTERSCALE_32BIT + 标准帧布局：STID 位于 bit[31:21]）
+                    const fr1 = (f.filter & 0x7FF) << 5;
+                    const fr2 = (f.mask & 0x7FF) << 5;
+                    const stmHint = bitLength === 11
+                        ? `FilterIdHigh / FilterMaskIdHigh = 0x${fr1.toString(16).toUpperCase().padStart(4, '0')} / 0x${fr2.toString(16).toUpperCase().padStart(4, '0')} (FilterIdLow/MaskLow = 0)`
+                        : '29-bit 请按扩展帧布局配置 FilterId(EXID) 与掩码';
+
+                    html += `<div class="filter-item">
+                    <div class="filter-header">
+                        <span class="filter-label">Filter #${idx + 1}</span>
+                        <span class="filter-mask">Filter = ${filterHex}</span>
+                        <span class="filter-range">📎 ${rangeStartHex} ~ ${rangeEndHex}</span>
+                        ${isCovered ? '✅' : '⚠️ 越界'}
+                    </div>
+                    <div class="filter-binary">
+                        <span><span class="binary-highlight">Filter</span> ${filterBin} = ${filterHex}</span>
+                        <span><span class="binary-highlight">忽略Mask(STM32)</span> ${maskBin} = ${maskHex}</span>
+                    </div>
+                    <div style="margin-top:10px; background:rgba(0,200,83,.12); border:1px solid rgba(0,200,83,.35); border-radius:14px; padding:10px 18px;">
+                        <div style="font-weight:700; color:#00c853; font-size:18px;">🎯 固定 Mask（1=必须匹配） = ${fixedMaskHex}</div>
+                        <div style="font-family:'JetBrains Mono',monospace; font-size:20px; letter-spacing:3px; margin-top:4px; color:#00c853;">${fixedMaskBinHtml}</div>
+                    </div>
+                    <div style="margin-top:6px; font-size:12px; color:var(--theme-text); background:rgba(34,187,255,.05); padding:4px 14px; border-radius:40px; border:1px solid var(--theme-border-soft);">
+                        🧮 STM32 32-bit: ${stmHint}
+                    </div>
+                </div>`;
+                });
+                html += `</div>`;
+
+                if (coveredIds !== totalIds) {
+                    html += `<div style="margin-top: 16px; background: rgba(230,126,34,.12); padding: 12px 20px; border-radius: 40px; border-left: 6px solid #e67e22; color: #e67e22;">
+                    ⚠️ 当前 Filter 集合未能完全覆盖目标范围 (覆盖 ${coveredIds}/${totalIds})，可能因为范围不连续或超出边界。
+                </div>`;
+                } else {
+                    html += `<div style="margin-top: 16px; background: rgba(0,200,83,.12); padding: 8px 20px; border-radius: 40px; border-left: 6px solid #00c853; color: #00c853;">
+                    ✅ 所有 Filter 精确覆盖目标范围，无多余 ID。
+                </div>`;
+                }
+
+                resultArea.innerHTML = html;
+            }
+
+            // 事件绑定
+            calcBtn.addEventListener('click', renderResult);
+            startInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') renderResult(); });
+            endInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') renderResult(); });
+            document.querySelectorAll('input[name="bitMode"]').forEach(radio => {
+                radio.addEventListener('change', renderResult);
+            });
+
+            // 初始计算
+            renderResult();
+        });
+
+        // 完整加载时注册一次全局监听（防止 PJAX 重复进入时累积监听）
+        if (!window.__canmaskBound) {
+            window.__canmaskBound = true;
+            document.addEventListener('pjax:complete', window.canmaskInit);
+        }
+        // 首次加载或 PJAX 进入本页时初始化（主题执行器会在 pjax:complete 后重新执行本脚本）
+        window.canmaskInit();
+    </script>
+</div><div id="paginator"></div></div><div id="post-footer"></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#canmask-tool"><span class="toc-number">1.</span> <span class="toc-text">📡 CAN 掩码计算器</span></a></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>

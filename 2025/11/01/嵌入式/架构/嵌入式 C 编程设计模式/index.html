@@ -60,9 +60,12 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
   }
 });
 </script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -75,10 +78,18 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js'],
  switches: {'article': Pjax.switches.sideBySide},

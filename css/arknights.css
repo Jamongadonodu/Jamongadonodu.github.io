@@ -1052,6 +1052,13 @@ nav li {
     display: inline-block;
   }
 }
+main.no-aside article,
+main.no-header article {
+  width: 100%;
+}
+main.no-header header {
+  display: none;
+}
 @media (max-width: 768px) {
   main {
     padding: 0 12px;

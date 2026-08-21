@@ -60,9 +60,12 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
   }
 });
 </script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -75,10 +78,18 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -96,7 +107,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
     inlineMath: [['$', '$'], ['\\(', '\\)']],
     displayMath: [['$$', '$$'], ['\\[', '\\]']]
   }
-};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>组内串口通信制定</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-08-13T16:00:00.000Z" id="date"> 2025-08-14</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-01-27T09:55:28.514Z" id="updated"> 2026-01-27</time></div></span></div></div><hr><div id="post-content"><p>一套设计精良的串口通信协议是整个串口通信系统的灵魂。它不仅决定了通信的效率和可靠性，更直接影响到系统的维护性、扩展性和生命周期成本。在嵌入式系统中，串口通信设计的两大宗旨：稳定可靠，实时</p>
+};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>组内串口通信制定</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-08-13T16:00:00.000Z" id="date"> 2025-08-14</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-07-29T08:14:50.243Z" id="updated"> 2026-07-29</time></div></span></div></div><hr><div id="post-content"><p>一套设计精良的串口通信协议是整个串口通信系统的灵魂。它不仅决定了通信的效率和可靠性，更直接影响到系统的维护性、扩展性和生命周期成本。在嵌入式系统中，串口通信设计的两大宗旨：稳定可靠，实时</p>
 <span id="more"></span>
 <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>对于串口通讯设计，可以划分为<strong>电气层、链路层和协议层</strong>三层</p>
 <ol>
@@ -105,7 +116,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <li><p><strong>链路层——UART配置</strong><br>在电气层建立的物理连接上，链路层定义了数据帧的基本结构和收发时序规则，确保原始的比特流能够被正确地组装成一个个独立的“数据包”（帧）。</p>
 </li>
 </ol>
-<p>例如：串口配置波特率为115200,数据帧为8N1（即）,使能DMA空闲中断接收数据等就属于链路层设计</p>
+<p>例如：串口配置波特率为115200,数据帧为8N1（即8 个数据位 + 无校验位 + 1 个停止位）; 使能DMA空闲中断接收数据等就属于链路层设计</p>
 <ol start="3">
 <li><strong>协议层——交互逻辑</strong><br>这是最高层，定义了数据帧的具体含义和通信双方的交互逻辑。链路层只保证一个字节的正确传输，而协议层则规定了如何将多个字节组合成有意义的命令、数据、地址，并实现诸如寻址、功能码、数据校验、错误回应、会话管理等高级功能。</li>
 </ol>
@@ -159,7 +170,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 </tr>
 </tbody></table>
 <p>Tips：为什么帧头一般为<code>0x55</code> <code>0xAA</code>，帧尾一般为<code>0x00</code> <code>0xFF</code>：<br>这几个字节的二进制电平在做硬件调试时使用示波器能快速定位数据帧</p>
-<h4 id="四部曲"><a href="#四部曲" class="headerlink" title="四部曲"></a>四部曲</h4><p>注意：四部曲中的代码不推荐你直接照搬，更多的是学习思路，对于实际应用的代码我们有更好写法，<a href="#%E5%AE%9E%E6%88%98">快速跳转</a></p>
+<h4 id="四部曲"><a href="#四部曲" class="headerlink" title="四部曲"></a>四部曲</h4><p>注意：四部曲中的代码不推荐你直接照搬，更多的是学习思路，对于实际应用的代码我们有更好写法，<a href="#%E5%AE%9E%E6%88%98">实战快速跳转</a></p>
 <blockquote>
 <p>准备工作（数据帧和校验）</p>
 </blockquote>

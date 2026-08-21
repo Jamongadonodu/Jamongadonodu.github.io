@@ -60,9 +60,12 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
   }
 });
 </script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -75,10 +78,18 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -96,7 +107,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
     inlineMath: [['$', '$'], ['\\(', '\\)']],
     displayMath: [['$$', '$$'], ['\\[', '\\]']]
   }
-};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>1.1 再谈C语言指针</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-04T16:00:00.000Z" id="date"> 2025-11-05</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-11-18T15:09:07.532Z" id="updated"> 2025-11-18</time></div></span></div></div><hr><div id="post-content"><p>之前，我们在学习C语言的过程中对指针已经有过相关了解，现在让我们再聊聊指针</p>
+};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>1.1 再谈C语言指针</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-11-04T16:00:00.000Z" id="date"> 2025-11-05</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-04-16T18:27:06.623Z" id="updated"> 2026-04-17</time></div></span></div></div><hr><div id="post-content"><p>之前，我们在学习C语言的过程中对指针已经有过相关了解，现在让我们再聊聊指针</p>
 <span id="more"></span>
 
 <h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p>C语言中，<strong>地址类型也称指针类型</strong>，圈定的内存用来存放地址编号的值。指针类型的内存表现跟编译器有关或者说跟CPU的地址总线有关。在32位的系统中，指针类型占用4byte，在64位的系统中，指针类型占用8byte。</p>

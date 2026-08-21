@@ -60,9 +60,12 @@ if (window.localStorage.getItem('theme-mode') === 'dark')
   }
 });
 </script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -75,10 +78,18 @@ lightGallery(document.getElementById('post-bg'), {
    }
  }
 });
-document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
-lightGallery(document.getElementById('post-bg'), {
-  plugins: [lgZoom,lgThumbnail],
-  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
  cacheBust: false,
  selectors: ['title','article','#aside-block','.pjax-js'],
  switches: {'article': Pjax.switches.sideBySide},
@@ -96,7 +107,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
     inlineMath: [['$', '$'], ['\\(', '\\)']],
     displayMath: [['$$', '$$'], ['\\[', '\\]']]
   }
-};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>电控组代码规范</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-07-26T16:00:00.000Z" id="date"> 2025-07-27</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2025-12-03T12:56:18.659Z" id="updated"> 2025-12-03</time></div></span></div></div><hr><div id="post-content"><p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。</p>
+};</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><article><div id="post-bg"><div id="post-title"><h1>电控组代码规范</h1><div id="post-info"><span>文章发布时间: <div class="control"><time datetime="2025-07-26T16:00:00.000Z" id="date"> 2025-07-27</time></div></span><br><span>最后更新时间: <div class="control"><time datetime="2026-04-16T18:22:09.302Z" id="updated"> 2026-04-17</time></div></span></div></div><hr><div id="post-content"><p>遵循良好的变量命名规则和最佳实践对于编写可读、可维护的代码至关重要。合理的变量命名不仅能帮助开发者理解代码的功能，还能在团队合作中减少沟通成本。如果不符合此规则发现，将会要求强制修改。</p>
 <span id="more"></span>
 
 <h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>目前，对于代码的命名有很多种，包括但不限于以下</p>
@@ -214,7 +225,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <li>如‘motor_init’ ‘i2c_read_data’</li>
 </ul>
 <ol start="2">
-<li>函数应该简短而漂亮，并且只做一件事情，而且把它做好。</li>
+<li>函数应该简短而漂亮，并且只做一件事情，而且把它做好，所以不要吝啬，对于一些复杂的事可以多写几个函数。</li>
 <li>一个函数的最大长度是和该函数的复杂度和缩进级数成反比的。所以，如果你有一个理 论上很简单的只有一个很长 (但是简单) 的 case 语句的函数，而且你需要在每个 case 里做很多很小的事情，这样的函数尽管很长，但也是可以的。</li>
 <li>函数的另外一个衡量标准是本地变量的数量。此数量不应超过 5－10 个，否则你的函数就有问题了。</li>
 <li>文件内部调用的函数均标为static，外部调用的函数在头文件中声明</li>
@@ -267,7 +278,7 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <ol>
 <li><p>注释是好的，不过有过度注释的危险。永远不要在注释里解释你的代码是如何运作的： 更好的做法是让别人一看你的代码就可以明白，解释写的很差的代码是浪费时间。</p>
 </li>
-<li><p>一般的，你想要你的注释告诉别人你的代码<strong>做了什么</strong>，而不是怎么做的。也请你尽量不要把注释放在一个函数体内部：如果函数复杂到你需要独立的注释其中的一部分（点名批评逐行注释），那么你的函数不符合<a href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99">函数规则</a></p>
+<li><p>一般的，你想要你的注释告诉别人你的代码<strong>做了什么</strong>，而不是怎么做的。也请你尽量不要把注释放在一个函数体内部：如果函数复杂到你需要独立的注释其中的一部分（点名批评逐行注释,要么是AI写的，要么你是能人智工），那么你的函数不符合<a href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99">函数规则</a></p>
 </li>
 <li><p>你应该做的，是把注释放在函数的头部，告诉人们它做了什么，也可以加上它做这些事情的原因。</p>
 </li>
@@ -322,11 +333,183 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <td>inline uint8_t get_now_status();</td>
 </tr>
 <tr>
-<td>类函数形参</td>
-<td>+前缀’_’</td>
-<td>void control(uint8_t _status)</td>
+<td>类私有成员</td>
+<td>+后缀’_’</td>
+<td>void control(uint8_t status_ )</td>
 </tr>
 </tbody></table>
+<h2 id="编译器扩展关键字"><a href="#编译器扩展关键字" class="headerlink" title="编译器扩展关键字"></a>编译器扩展关键字</h2><p>有时候会用到一些编译器自带的扩展关键字，有如下规则，仅列举部分</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>弱符号</td>
+<td><code>__attribute__((__weak__))</code></td>
+<td>定义弱符号，可被强符号覆盖</td>
+</tr>
+<tr>
+<td>打包结构体</td>
+<td><code>__attribute__((__packed__))</code></td>
+<td>禁止结构体字节对齐，紧凑存储</td>
+</tr>
+<tr>
+<td>保留符号</td>
+<td><code>__attribute__((__used__))</code></td>
+<td>强制保留未使用的符号</td>
+</tr>
+<tr>
+<td>抑制未使用警告</td>
+<td><code>__attribute__((__unused__))</code></td>
+<td>标记未使用变量&#x2F;参数，避免警告</td>
+</tr>
+<tr>
+<td>强制内联</td>
+<td><code>__attribute__((__always_inline__))</code></td>
+<td>强制函数内联</td>
+</tr>
+<tr>
+<td>纯函数</td>
+<td><code>__attribute__((__pure__))</code></td>
+<td>函数无副作用，返回值仅依赖参数</td>
+</tr>
+<tr>
+<td>只读函数</td>
+<td><code>__attribute__((__const__))</code></td>
+<td>不访问全局内存，比 pure 更严格</td>
+</tr>
+<tr>
+<td>对齐</td>
+<td><code>__attribute__((__aligned__(n)))</code></td>
+<td>指定最小对齐字节数</td>
+</tr>
+<tr>
+<td>不返回</td>
+<td><code>__attribute__((__noreturn__))</code></td>
+<td>函数不会返回</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong> ：这些关键字多数非 C&#x2F;C++ 标准，具体语法和可用性依赖于编译器（如 GCC、Clang、ARMCC、IAR、Keil 等），不要使用 <code>__attribute__((__XXX__))</code>的封装版本<code>__XXX</code>（虽然不会报错）,更推荐使用标准化的 #Pragma(预处理指令) 或编译器通用的 <strong>attribute</strong> 形式以保持可移植性。</p>
+<h2 id="预处理指令"><a href="#预处理指令" class="headerlink" title="预处理指令"></a>预处理指令</h2><p>有时候会用到一些预处理指令，有如下规则</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件包含</td>
+<td><code>#include &lt;file&gt;</code></td>
+<td>包含系统头文件</td>
+</tr>
+<tr>
+<td>文件包含</td>
+<td><code>#include &quot;file&quot;</code></td>
+<td>包含用户头文件</td>
+</tr>
+<tr>
+<td>宏定义</td>
+<td><code>#define MACRO value</code></td>
+<td>定义宏</td>
+</tr>
+<tr>
+<td>宏定义(带参)</td>
+<td><code>#define MACRO(x) ((x)*2)</code></td>
+<td>定义带参数的宏</td>
+</tr>
+<tr>
+<td>宏取消</td>
+<td><code>#undef MACRO</code></td>
+<td>取消宏定义</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#ifdef MACRO</code></td>
+<td>如果宏已定义则编译</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#ifndef MACRO</code></td>
+<td>如果宏未定义则编译</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#if 表达式</code></td>
+<td>如果表达式为真则编译</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#else</code></td>
+<td>否则编译</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#elif 表达式</code></td>
+<td>否则如果为真则编译</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#endif</code></td>
+<td>结束条件编译块</td>
+</tr>
+<tr>
+<td>条件编译</td>
+<td><code>#defined(MACRO)</code></td>
+<td>在#if中检查宏是否定义</td>
+</tr>
+<tr>
+<td>弱符号</td>
+<td><code>#pragma weak</code></td>
+<td>定义弱符号，可被强符号覆盖</td>
+</tr>
+<tr>
+<td>打包结构体</td>
+<td><code>#pragma pack(1)</code></td>
+<td>禁止结构体字节对齐，紧凑存储</td>
+</tr>
+<tr>
+<td>恢复默认对齐</td>
+<td><code>#pragma pack()</code></td>
+<td>恢复默认对齐方式</td>
+</tr>
+<tr>
+<td>保留符号</td>
+<td><code>#pragma used</code></td>
+<td>强制保留未使用的符号</td>
+</tr>
+<tr>
+<td>对齐</td>
+<td><code>#pragma align(8)</code></td>
+<td>指定最小对齐字节数</td>
+</tr>
+<tr>
+<td>头文件防重复</td>
+<td><code>#pragma once</code></td>
+<td>确保头文件只被编译一次</td>
+</tr>
+<tr>
+<td>错误指令</td>
+<td><code>#error message</code></td>
+<td>输出错误并停止编译</td>
+</tr>
+<tr>
+<td>警告指令</td>
+<td><code>#warning message</code></td>
+<td>输出警告（非标准）</td>
+</tr>
+<tr>
+<td>断言</td>
+<td><code>#assert</code></td>
+<td>编译时断言（较少用）</td>
+</tr>
+</tbody></table>
+<p>大部分可以作为编译器扩展关键字的平替，几乎所有编译器支持，且更现代化，唯一的缺点是无法在宏里动态生成（不能放在宏里），故在C99，C11引入了<strong>预处理操作符</strong>，用于在代码中以字符串形式生成 #pragma 指令使其可以在宏定义中使用，不过我们平时常使用预处理指令(#pagram)</p>
 <h2 id="代码风格（不做强制要求）"><a href="#代码风格（不做强制要求）" class="headerlink" title="代码风格（不做强制要求）"></a>代码风格（不做强制要求）</h2><p>代码风格的意义就在于使用平常使用的工具来维持代码的可读性和可维护性。</p>
 <p>但介于每个人都有自己的代码风格，这个部分不会硬性要求统一，但还是推荐使用以下代码风格</p>
 <h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>制表符是 4 个字符，所以缩进也是 4 个字符。<br><strong>理由</strong>：缩进的全部意义就在于清楚的定义一个控制块起止于何处。尤其是当你盯着你的 屏幕连续看了 20 小时之后，你将会发现大一点的缩进会使你更容易分辨缩进。</p>
@@ -385,4 +568,4 @@ document.addEventListener("pjax:complete", reset);reset()})</script><meta name="
 <p>author：Cherno</p>
 <p>[^1]: <a target="_blank" rel="noopener" href="https://www.kernel.org/doc/html/v4.15/translations/zh_CN/coding-style.html">Linux 内核代码风格</a></p>
 <p>[^2]: <a target="_blank" rel="noopener" href="https://my.oschina.net/emacs_8811540/blog/17320005">Linux 环境下变量命名规则与最佳实践</a></p>
-<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/08/14/%E7%94%B5%E6%8E%A7/RMEC/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">← 下一篇 组内串口通信制定</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/07/23/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/CubeMX%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">CubeMX配置详解 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%8F%8A%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">命名规则及代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-number">2.1.1.</span> <span class="toc-text">函数规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%91%BD%E5%90%8D%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">文件的命名格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">编码格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">2.1.4.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%EF%BC%88C%E8%AF%AD%E8%A8%80%E5%B9%B6%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">内联（C语言并不常用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.6.</span> <span class="toc-text">条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.1.7.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%EF%BC%88%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.1.8.</span> <span class="toc-text">封装（严格要求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.1.9.</span> <span class="toc-text">C&#x2F;C++ 兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%8A%AF%E7%89%87%E9%80%82%E9%85%8D"><span class="toc-number">2.1.10.</span> <span class="toc-text">多芯片适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-number">2.1.11.</span> <span class="toc-text">C&#x2F;C++混合编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%EF%BC%88%E4%B8%8D%E5%81%9A%E5%BC%BA%E5%88%B6%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">代码风格（不做强制要求）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">2.2.1.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E9%95%BF%E7%9A%84%E8%A1%8C%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%93%E6%95%A3"><span class="toc-number">2.2.2.</span> <span class="toc-text">把长的行和字符串打散</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E2%80%9C-%E2%80%9D%E5%92%8C%E2%80%9C-%E2%80%9D%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.3.</span> <span class="toc-text">括号“{”和“}”的使用原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text">空格的使用</span></a></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2025/08/14/%E7%94%B5%E6%8E%A7/RMEC/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">← 下一篇 组内串口通信制定</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2025/07/23/%E5%B5%8C%E5%85%A5%E5%BC%8F/STM32/CubeMX%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">CubeMX配置详解 上一篇 →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="文章目录">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="/img/faction/guang.png" alt="Logo" style="margin:1em;;border-radius:30px;;"></a><h1 id="Dr"><a href="0">Cherno</a></h1><div id="description"><p></p></div><div id="social-links"><a class="social img" target="_blank" rel="noopener" href="https://edu.gitee.com/CCUT_1024/dashboard"><img alt="Gitee" src="/img/gitee-fill-round.png"></a><a class="social" target="_blank" rel="noopener" href="https://bilibili.com"><i class="fa-brands fa-bilibili" alt="BiliBili"></i></a></div></div><div id="aside-block"><div id="toc-div"><h1>目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E8%AF%9D"><span class="toc-number">1.</span> <span class="toc-text">写在前面的话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%8F%8A%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">命名规则及代码风格</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">2.1.</span> <span class="toc-text">命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%A7%84%E5%88%99"><span class="toc-number">2.1.1.</span> <span class="toc-text">函数规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%91%BD%E5%90%8D%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">文件的命名格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">编码格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">2.1.4.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%81%94%EF%BC%88C%E8%AF%AD%E8%A8%80%E5%B9%B6%E4%B8%8D%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">内联（C语言并不常用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.6.</span> <span class="toc-text">条件编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.1.7.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%EF%BC%88%E4%B8%A5%E6%A0%BC%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.1.8.</span> <span class="toc-text">封装（严格要求）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.1.9.</span> <span class="toc-text">C&#x2F;C++ 兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%8A%AF%E7%89%87%E9%80%82%E9%85%8D"><span class="toc-number">2.1.10.</span> <span class="toc-text">多芯片适配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-C-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-number">2.1.11.</span> <span class="toc-text">C&#x2F;C++混合编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E6%89%A9%E5%B1%95%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.2.</span> <span class="toc-text">编译器扩展关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.</span> <span class="toc-text">预处理指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%EF%BC%88%E4%B8%8D%E5%81%9A%E5%BC%BA%E5%88%B6%E8%A6%81%E6%B1%82%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">代码风格（不做强制要求）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-number">2.4.1.</span> <span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E9%95%BF%E7%9A%84%E8%A1%8C%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%89%93%E6%95%A3"><span class="toc-number">2.4.2.</span> <span class="toc-text">把长的行和字符串打散</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E2%80%9C-%E2%80%9D%E5%92%8C%E2%80%9C-%E2%80%9D%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.3.</span> <span class="toc-text">括号“{”和“}”的使用原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.4.4.</span> <span class="toc-text">空格的使用</span></a></li></ol></li></ol></li></ol></div></div></aside></main><canvas id="canvas-dust"></canvas></body></html>

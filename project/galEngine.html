@@ -1,0 +1,474 @@
+<!DOCTYPE html><html lang="zh-cn" theme-mode="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Galgame Engine | Cherno-Sagiri</title><link rel="icon" type="image/x-icon" href="/icons/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"键入以继续","blurHolder":"数据检索","noResult":"无 $0 相关数据"},"code":{"codeInfo":"$0 - $1 行","copy":"复制"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('/img/background_dark.png');
+ --light-background: url('/img/background_light.jpg');
+ --theme-encrypt-confirm: '确认'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script>window.addEventListener("load", () => {document.addEventListener("pjax:complete", () => {
+  document.querySelectorAll("article script[data-pjax-tool]").forEach((s) => {
+    try { new Function(s.textContent)(); } catch (e) { console.error("[tool-init]", e); }
+  });
+});
+})</script><script class="pjax-js">reset= () => {if (window.MathJax) MathJax.Hub.Queue(["Typeset", MathJax.Hub]);document.querySelector('.lg-container')?.remove()
+if (document.querySelector('#post-bg .item-img')) {
+ lightGallery(document.getElementById('post-bg'), {
+   plugins: [lgZoom,lgThumbnail],
+   selector: '.item-img'})
+}
+}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main class="no-aside no-header"><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="数据检索" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem"><a class="navBlock" href="/about/"><span class="navItemTitle">About</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li><li class="navItem"><a class="navBlock" href="/project/"><span class="navItemTitle">Project</span></a></li><li class="navItem"><a class="navBlock" href="/members/"><span class="navItemTitle">Members</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>Galgame Engine</h1></div><hr><div id="post-content">
+<div id="galengine-tool">
+    <style>
+        #galengine-tool {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #gameCanvas {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            display: none;
+        }
+
+        #textBox {
+            position: absolute;
+            left: 5%;
+            bottom: -20%;
+            width: 90%;
+            height: 40%;
+            padding: 20px;
+            background:
+                linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .4) 10%, rgba(0, 0, 0, .4) 100%),
+                linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .4) 1%, rgba(0, 0, 0, .4) 99%, rgba(0, 0, 0, 0) 100%);
+            border-radius: 25px;
+            display: none;
+        }
+
+        #textContent {
+            color: white;
+            margin: 0 20px;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .gal-back {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--theme-text-light);
+            background: var(--theme-bg-trans1);
+            border: 1px solid var(--theme-border-soft);
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            transition: 0.15s;
+        }
+
+        .gal-back:hover {
+            border-color: var(--theme-highlight);
+            transform: scale(0.97);
+        }
+
+        /* 隐藏博客左右两侧（PJAX 进入时 main 的 class 不更新，页面内 CSS 兜底） */
+        header {
+            display: none !important;
+        }
+
+        aside {
+            display: none !important;
+        }
+    </style>
+    <a class="gal-back" href="/project/" title="返回工具集">← 返回</a>
+    <input type="file" id="fileInput" accept=".json">
+    <div id="dropArea" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+        拖放 JSON 文件到这里
+    </div>
+    <div id="countdownBar" style="height: 10px; background-color: #ccc; width: 100%;"></div>
+    <button id="cancelButton" style="display: none;">取消读取</button>
+    <canvas id="gameCanvas"></canvas>
+    <div id="textBox">
+        <p id="textContent">点击继续...</p>
+    </div>
+
+    <script data-pjax-tool>
+        let timeoutId, intervalId;
+        const inputFile = document.getElementById('fileInput');
+        const dropArea = document.getElementById('dropArea');
+        const countdownBar = document.getElementById('countdownBar');
+        const cancelButton = document.getElementById('cancelButton');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+            dropArea.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); }, false);
+        });
+        ['dragenter', 'dragover'].forEach(evt => {
+            dropArea.addEventListener(evt, () => { dropArea.style.borderColor = 'blue'; }, false);
+        });
+        ['dragleave', 'drop'].forEach(evt => {
+            dropArea.addEventListener(evt, () => { dropArea.style.borderColor = '#ccc'; }, false);
+        });
+        dropArea.addEventListener('drop', handleDrop, false);
+        dropArea.addEventListener('click', () => { inputFile.click(); });
+
+        cancelButton.addEventListener('click', () => {
+            clearTimeout(timeoutId);
+            clearInterval(intervalId);
+            countdownBar.style.display = 'none';
+            cancelButton.style.display = 'none';
+        });
+
+        const dbName = 'gameDataDB';
+        const dbVersion = 1;
+        const dbRequest = indexedDB.open(dbName, dbVersion);
+
+        dbRequest.onupgradeneeded = event => {
+            const db = event.target.result;
+            db.createObjectStore('gameData', { keyPath: 'fileName' });
+        };
+
+        dbRequest.onsuccess = event => {
+            const db = event.target.result;
+            const storedFile = localStorage.getItem('lastGameFile');
+            if (storedFile) {
+                countdownBar.style.display = 'block';
+                cancelButton.style.display = 'inline-block';
+                let totalTime = 5000, interval = 100, remaining = totalTime;
+                intervalId = setInterval(() => {
+                    remaining -= interval;
+                    countdownBar.style.width = `${(remaining / totalTime) * 100}%`;
+                    if (remaining <= 0) clearInterval(intervalId);
+                }, interval);
+                timeoutId = setTimeout(() => {
+                    alert(`自动读取上次的文件: ${storedFile}`);
+                    const trans = db.transaction(['gameData'], 'readonly');
+                    const store = trans.objectStore('gameData');
+                    const getReq = store.get(storedFile);
+                    getReq.onsuccess = e => {
+                        if (e.target.result) startGame(e.target.result.data);
+                    };
+                    getReq.onerror = e => console.error('读取 IndexedDB 出错:', e.target.error);
+                }, totalTime);
+            }
+            inputFile.addEventListener('change', handleFileSelect, false);
+            function handleFileSelect() {
+                // 清除现有倒计时
+                clearTimeout(timeoutId);
+                clearInterval(intervalId);
+                countdownBar.style.display = 'none';
+                cancelButton.style.display = 'none';
+
+                const file = inputFile.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        try {
+                            const gameData = JSON.parse(e.target.result);
+                            // 移除此行以禁止下次自动加载
+                            // localStorage.setItem('lastGameFile', file.name);
+
+                            const trans = db.transaction(['gameData'], 'readwrite');
+                            const store = trans.objectStore('gameData');
+                            const putReq = store.put({ fileName: file.name, data: gameData });
+                            putReq.onsuccess = () => startGame(gameData);
+                            putReq.onerror = e => console.error('写入 IndexedDB 出错:', e.target.error);
+                        } catch (err) {
+                            console.error('解析 JSON 出错:', err);
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            }
+        };
+
+        dbRequest.onerror = e => console.error('打开 IndexedDB 失败:', e.target.error);
+
+        function handleDrop(e) {
+            const files = e.dataTransfer.files;
+            if (files.length) {
+                inputFile.files = files;
+                handleFileSelect();
+            }
+        }
+
+        function startGame(gameData) {
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+            const textBox = document.getElementById("textBox");
+            const textContent = document.getElementById("textContent");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const offCanvas = document.createElement('canvas');
+            offCanvas.width = canvas.width;
+            offCanvas.height = canvas.height;
+            const offCtx = offCanvas.getContext('2d');
+
+            const charCanvas = document.createElement('canvas');
+            charCanvas.width = canvas.width;
+            charCanvas.height = canvas.height;
+            const charCtx = charCanvas.getContext('2d');
+
+            const bgImages = {};
+            const charImages = {};
+
+            canvas.style.display = "block";
+            textBox.style.display = "block";
+            dropArea.style.display = "none";
+            cancelButton.style.display = "none";
+            countdownBar.style.display = "none";
+
+            async function preloadImages() {
+                await Promise.all([
+                    ...Object.entries(gameData.backgrounds).map(([key, src]) => loadImage(src).then(img => bgImages[key] = img)),
+                    ...Object.entries(gameData.characters).map(([key, src]) => loadImage(src).then(img => charImages[key] = img))
+                ]);
+            }
+            function loadImage(src) {
+                return new Promise(resolve => {
+                    const img = new Image();
+                    img.src = src;
+                    img.onload = () => resolve(img);
+                });
+            }
+
+            let currentScene = 0;
+            let currentBg = { x: 0.5, y: 0.5, scale: 1, auto: "crop_min" };
+            let currentChar = { x: 0.5, y: 1.1, scale: 1 };
+            let textIndex = 0, currentText = "";
+            let typingTimer = null, sceneTimer = null;
+            const textSpeed = 50;
+            const frameRate = 60, frameInterval = 1000 / frameRate;
+            const easing = {
+                easeLinear: t => t,
+                easeCirc: t => Math.sqrt(1 - (t - 1) * (t - 1)),
+                easeQuadratic: t => 1 - (1 - t) * (1 - t),
+                easeCubic: t => 1 - (1 - t) * (1 - t) * (1 - t),
+                easeQuartic: t => 1 - (1 - t) * (1 - t) * (1 - t) * (1 - t),
+                moveLinear: t => t,
+                moveInQuad: t => t * t,
+                moveOutQuad: t => t * (2 - t),
+                moveInOutQuad: t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+            };
+
+            function finalizeScene(nextScene) {
+                offCtx.clearRect(0, 0, offCanvas.width, offCanvas.height);
+                charCtx.clearRect(0, 0, charCanvas.width, charCanvas.height);
+                if (nextScene.background) {
+                    if (typeof nextScene.background === "object")
+                        Object.assign(currentBg, nextScene.background);
+                    else currentBg.name = nextScene.background;
+                }
+                drawBackground();
+                if (nextScene.character) {
+                    if (typeof nextScene.character === "object")
+                        Object.assign(currentChar, nextScene.character);
+                    else currentChar.name = nextScene.character;
+                }
+                drawImage(charImages[currentChar.name], currentChar, offCtx);
+                ctx.drawImage(offCanvas, 0, 0);
+                if (nextScene.text) {
+                    const useTyping = nextScene.typing !== undefined ? nextScene.typing : true;
+                    startTyping(nextScene.text, useTyping);
+                }
+                clearTimeout(sceneTimer);
+                if (nextScene.time) {
+                    sceneTimer = setTimeout(() => { loadScene(++currentScene); }, nextScene.time);
+                }
+            }
+
+            async function loadScene(sceneIndex) {
+                if (sceneIndex >= gameData.scenes.length) sceneIndex = currentScene = 0;
+                const nextScene = gameData.scenes[sceneIndex];
+                const defaultTrans = { duration: 500, style: "easeQuartic" };
+                const trans = nextScene.transition || defaultTrans;
+                const startTime = performance.now();
+                let lastFrameTime = startTime;
+                const startChar = { ...currentChar };
+                const endChar = { ...currentChar };
+                if (nextScene.character) {
+                    if (typeof nextScene.character === "object")
+                        Object.assign(endChar, nextScene.character);
+                    else endChar.name = nextScene.character;
+                }
+                function drawFrame(timestamp) {
+                    if (timestamp - lastFrameTime < frameInterval) {
+                        requestAnimationFrame(drawFrame);
+                        return;
+                    }
+                    lastFrameTime = timestamp;
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / trans.duration, 1);
+                    const isMove = trans.style.startsWith('move');
+                    const easingName = isMove ? trans.style.slice(4) : trans.style;
+                    const easeFunc = easing[easingName] || easing.easeQuartic;
+                    const easedProgress = easeFunc(progress);
+                    offCtx.clearRect(0, 0, offCanvas.width, offCanvas.height);
+                    charCtx.clearRect(0, 0, charCanvas.width, charCanvas.height);
+                    drawBackground();
+                    if (isMove) {
+                        const tempChar = {
+                            ...startChar,
+                            x: startChar.x + (endChar.x - startChar.x) * easedProgress,
+                            y: startChar.y + (endChar.y - startChar.y) * easedProgress,
+                            scale: startChar.scale + (endChar.scale - startChar.scale) * easedProgress,
+                            name: endChar.name
+                        };
+                        drawImage(charImages[tempChar.name], tempChar, charCtx);
+                    } else {
+                        charCtx.globalCompositeOperation = "lighter";
+                        charCtx.globalAlpha = 1 - easedProgress;
+                        drawImage(charImages[startChar.name], startChar, charCtx);
+                        charCtx.globalAlpha = easedProgress;
+                        drawImage(charImages[endChar.name], endChar, charCtx);
+                        charCtx.globalCompositeOperation = "source-over";
+                    }
+                    offCtx.drawImage(charCanvas, 0, 0);
+                    ctx.drawImage(offCanvas, 0, 0);
+                    if (elapsed < trans.duration) requestAnimationFrame(drawFrame);
+                    else finalizeScene(nextScene);
+                }
+                requestAnimationFrame(drawFrame);
+                currentScene = sceneIndex;
+            }
+
+            function drawBackground(bg = currentBg) {
+                const img = bgImages[bg.name];
+                if (!img) return;
+                const canvasRatio = offCanvas.width / offCanvas.height;
+                const imgRatio = img.width / img.height;
+                let srcX = 0, srcY = 0, srcW = img.width, srcH = img.height;
+                if (bg.auto === "crop_min") {
+                    if (canvasRatio > imgRatio) {
+                        srcH = img.width / canvasRatio;
+                        srcY = (img.height - srcH) / 2;
+                    } else {
+                        srcW = img.height * canvasRatio;
+                        srcX = (img.width - srcW) / 2;
+                    }
+                } else if (bg.auto === "crop_max") {
+                    if (canvasRatio < imgRatio) {
+                        srcH = img.width / canvasRatio;
+                        srcY = (img.height - srcH) / 2;
+                    } else {
+                        srcW = img.height * canvasRatio;
+                        srcX = (img.width - srcW) / 2;
+                    }
+                }
+                offCtx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, offCanvas.width, offCanvas.height);
+            }
+
+            function drawImage(img, obj, ctxRef = offCtx) {
+                if (!img) return;
+                const scale = obj.scale * (.5 + .5 / window.devicePixelRatio) * (.8 * canvas.height + .2 * canvas.width) / 1000;
+                const x = obj.x * canvas.width - img.width * scale / 2;
+                const y = obj.y * canvas.height - img.height * scale / 2;
+                ctxRef.drawImage(img, x, y, img.width * scale, img.height * scale);
+            }
+
+            function startTyping(text, useTyping = true) {
+                currentText = text;
+                textIndex = 0;
+                textContent.innerText = "";
+                clearInterval(typingTimer);
+                if (useTyping) {
+                    typingTimer = setInterval(() => {
+                        if (textIndex < currentText.length) {
+                            textContent.innerText += currentText[textIndex++];
+                        } else {
+                            clearInterval(typingTimer);
+                        }
+                    }, textSpeed);
+                } else {
+                    textContent.innerText = text;
+                }
+            }
+
+            [canvas, textBox].forEach(el => el.addEventListener("click", async () => {
+                const scene = gameData.scenes[currentScene];
+                if (scene.clickable !== false) {
+                    if (scene.typing !== false && textIndex < currentText.length) {
+                        textContent.innerText = currentText;
+                        clearInterval(typingTimer);
+                        textIndex = currentText.length;
+                    } else {
+                        clearTimeout(sceneTimer);
+                        await loadScene(++currentScene);
+                    }
+                }
+            }));
+
+            preloadImages().then(() => loadScene(currentScene));
+            window.addEventListener('resize', async () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                offCanvas.width = canvas.width;
+                offCanvas.height = canvas.height;
+                await loadScene(currentScene);
+            });
+        }
+    </script>
+</div><div id="paginator"></div></div><div id="post-footer"></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="回到顶部" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="切换主题"></a></div></div></article></main><canvas id="canvas-dust"></canvas></body></html>
